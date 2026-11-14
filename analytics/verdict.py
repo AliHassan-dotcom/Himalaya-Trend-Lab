@@ -54,7 +54,7 @@ def generate_plain_language_verdict(
 
     # Rule 1 & 2: Headline Verdict (Significant vs. Not Yet Significant)
     if is_sig:
-        badge_status = "Significant increase" if slope_dec > 0 else "Significant decrease"
+        badge_status = "SIGNIFICANT INCREASE" if slope_dec > 0 else "SIGNIFICANT DECREASE"
         badge_color = "#e06c3a" if (slope_dec > 0 and not var_info.get("invert_hazard", False)) or (slope_dec < 0 and var_info.get("invert_hazard", False)) else "#58a6ff"
         headline = (
             f"{short_name} in the {reg_name} has {direction_word} by {sign_prefix}{slope_dec:.2f} {dec_units} "
@@ -62,7 +62,7 @@ def generate_plain_language_verdict(
             f"and the long-term trend is statistically significant ({p_str}, alpha = {alpha})."
         )
     else:
-        badge_status = "No significant trend yet"
+        badge_status = "NO SIGNIFICANT TREND YET"
         badge_color = "#8b949e"
         headline = (
             f"{short_name} in the {reg_name} shows a slight {tendency_word} tendency "
@@ -96,9 +96,7 @@ def generate_plain_language_verdict(
             f"{region_info['glacier_area_km2']:,} km² of glacier ice / {region_info['glacier_fraction_pct']}% glacier cover)."
         ),
         "how_much_is_it_changing": how_much_text,
-        "how_fast_is_it_changing": how_much_text,
         "is_it_significant": sig_text,
-        "is_it_statistically_significant": sig_text,
     }
 
     # Autocorrelation & Data-Quality Warnings (Section 7.4 & 7.6)

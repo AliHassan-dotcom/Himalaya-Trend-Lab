@@ -280,8 +280,8 @@ def api_ask(
         "answer": (
             f"{inv['verdict']['headline']} "
             f"Specifically: {inv['verdict']['four_questions']['what_is_changing']} "
-            f"{inv['verdict']['four_questions']['how_fast_is_it_changing']} "
-            f"({inv['verdict']['four_questions']['is_it_statistically_significant']}). "
+            f"{inv['verdict']['four_questions']['how_much_is_it_changing']} "
+            f"({inv['verdict']['four_questions']['is_it_significant']}). "
             f"Furthermore, the 0°C freezing isotherm has shifted by {inv['freezing_level']['shift_m']:+} m (current ELA {inv['freezing_level']['current_ela_m']} m), "
             f"and dark-ice soot albedo adds +{inv['dark_ice']['extra_melt_mm_per_month']} mm/month of melt."
         ),

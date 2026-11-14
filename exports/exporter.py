@@ -1,9 +1,11 @@
-"""Export & Reporting utilities for Himalaya Trend Lab (Layer 5B).
+"""
+Export & Reporting utilities for Himalaya Trend Lab (Layer 5B).
 Generates:
 1. Processed Monthly Time-Series CSV (with seasonal cycle, anomalies, and Sen's trend).
 2. One-Page PDF Detective Investigation Report (using ReportLab).
 3. Official Earth System Trend Detective Certificate PDF (using ReportLab).
-"""from io import BytesIO
+"""
+from io import BytesIO
 from datetime import datetime
 from typing import Dict, Any
 import pandas as pd
@@ -14,7 +16,8 @@ from reportlab.pdfgen import canvas
 
 
 def export_series_to_csv_bytes(enriched_df: pd.DataFrame) -> bytes:
-    """Serialize an enriched monthly investigation DataFrame to UTF-8 CSV bytes."""cols = [
+    """Serialize an enriched monthly investigation DataFrame to UTF-8 CSV bytes."""
+    cols = [
         c for c in [
             "date", "year", "month", "region_name", "variable_name", "units",
             "value", "seasonal_cycle", "anomaly", "anomaly_trend_sens",
@@ -36,8 +39,10 @@ def generate_one_page_pdf_report(
     ml_summary: Dict[str, Any],
     freezing_info: Dict[str, Any],
 ) -> bytes:
-    """Generate a clean, publication-grade One-Page PDF Detective Investigation Report.
-    """buf = BytesIO()
+    """
+    Generate a clean, publication-grade One-Page PDF Detective Investigation Report.
+    """
+    buf = BytesIO()
     c = canvas.Canvas(buf, pagesize=A4)
     w, h = A4
 
@@ -165,9 +170,11 @@ def generate_one_page_pdf_report(
 
 
 def generate_detective_certificate_pdf(recipient_name: str = "Earth System Data Detective") -> bytes:
-    """Generate the downloadable Official Earth System Trend Detective Certificate PDF
+    """
+    Generate the downloadable Official Earth System Trend Detective Certificate PDF
     when the user completes the Detective Notebook missions.
-    """buf = BytesIO()
+    """
+    buf = BytesIO()
     page_size = landscape(A4)
     c = canvas.Canvas(buf, pagesize=page_size)
     w, h = page_size
@@ -209,9 +216,9 @@ def generate_detective_certificate_pdf(recipient_name: str = "Earth System Data 
     )
 
     badges = [
-        "MISSION 01: The May 2022 Shisper Glacier & Hassanabad Bridge Collapse (GLOF Forensic Analyst)",
-        "MISSION 02: Unmasking the 'Karakoram Anomaly' vs. Hindu Kush Retreat (Cryosphere Contrast Specialist)",
-        "MISSION 03: The Upper Indus Rainfall Illusion & Mann-Kendall Honesty (Statistical Integrity Guardian)",
+        " MISSION 01: The May 2022 Shisper Glacier & Hassanabad Bridge Collapse (GLOF Forensic Analyst)",
+        " MISSION 02: Unmasking the 'Karakoram Anomaly' vs. Hindu Kush Retreat (Cryosphere Contrast Specialist)",
+        " MISSION 03: The Upper Indus Rainfall Illusion & Mann-Kendall Honesty (Statistical Integrity Guardian)",
     ]
     c.setFillColor(colors.HexColor("#6DE7FF"))
     c.setFont("Helvetica-Bold", 11)

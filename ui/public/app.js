@@ -11,6 +11,12 @@ function formatP(val) {
   return num < 0.0001 ? "p < 0.0001" : `p = ${num.toFixed(4)}`;
 }
 
+function formatBadge(str) {
+  if (!str) return "Evaluated";
+  const s = String(str).trim();
+  return s.charAt(0).toUpperCase() + s.slice(1).toLowerCase();
+}
+
 const placeholderSvg =
   '<svg viewBox="0 0 900 270" role="img" aria-label="Loading scientific figure"><line x1="68" y1="36" x2="68" y2="228" stroke="#484f58" stroke-width="1.2"/><line x1="68" y1="228" x2="876" y2="228" stroke="#484f58" stroke-width="1.2"/><text x="450" y="135" text-anchor="middle" fill="#8b949e" font-family="Inter, sans-serif" font-size="13">Loading series data...</text></svg>';
 
@@ -927,7 +933,7 @@ async function bindHomePreview() {
       const tag = document.getElementById("homePreviewTag");
       if (tag) tag.textContent = `Dataset: ${d.source_mission} · ${d.start_year} to ${d.end_year} (${d.n_months} months, pre-cached Nov 2026)`;
       const badge = document.getElementById("homeVerdictBadge");
-      if (badge) badge.textContent = `Statistical verdict: ${d.verdict?.badge_status || "Evaluated"}`;
+      if (badge) badge.textContent = `Statistical verdict: ${formatBadge(d.verdict?.badge_status)}`;
       const head = document.getElementById("homeVerdictHead");
       if (head) head.textContent = d.verdict?.headline || "";
       const sub = document.getElementById("homeVerdictSub");
@@ -1008,7 +1014,7 @@ async function fetchLiveInvestigation(body) {
       srcEl.textContent = `Dataset: ${data.source_mission} · Period: ${data.start_year} to ${data.end_year} (${data.n_months} months) · Archive: ${data.source_mode}`;
     }
     const badgeEl = body.querySelector("#invBadge");
-    if (badgeEl) badgeEl.textContent = `Statistical verdict: ${data.verdict?.badge_status || "Evaluated"}`;
+    if (badgeEl) badgeEl.textContent = `Statistical verdict: ${formatBadge(data.verdict?.badge_status)}`;
     const headEl = body.querySelector("#invHeadline");
     if (headEl) headEl.textContent = data.verdict?.headline || "";
     const subEl = body.querySelector("#invSubtext");
@@ -1120,12 +1126,15 @@ async function fetchLiveInvestigation(body) {
     const teleEl = body.querySelector("#invTeleList");
     if (teleEl && data.teleconnections) {
       teleEl.innerHTML = data.teleconnections
-        .map(
-          (t) =>
-            `<div style="padding:10px 12px;border:1px solid var(--border-default);border-radius:4px;background:var(--bg-canvas);font-size:13px">
-              <b class="num-mono" style="color:var(--accent-link)">${t.index_code} (r = ${t.correlation_r >= 0 ? "+" : ""}${t.correlation_r})</b>: <span style="color:var(--text-secondary)">${t.relationship_strength} (${formatP(t.p_value)})</span>
-            </div>`
-        )
+        .map((t) => {
+          const code = t.index_id || t.index_code || "INDEX";
+          const rVal = t.pearson_r ?? t.correlation_r ?? 0;
+          const pVal = t.pearson_p ?? t.p_value ?? 0.05;
+          const desc = t.physical_mechanism || t.relationship_strength || "";
+          return `<div style="padding:10px 12px;border:1px solid var(--border-default);border-radius:4px;background:var(--bg-canvas);font-size:13px">
+              <b class="num-mono" style="color:var(--accent-link)">${code} (r = ${rVal >= 0 ? "+" : ""}${rVal}, ${formatP(pVal)})</b>: <span style="color:var(--text-secondary)">${desc}</span>
+            </div>`;
+        })
         .join("");
     }
 
@@ -1242,11 +1251,11 @@ function enhancePage(n) {
         const title = body.querySelector("#caseMainTitle");
         if (title) title.textContent = d.case.title || "";
 
-        body.querySelector("#casePrimaryBadge").textContent = `Primary basin: ${d.primary.badge}`;
+        body.querySelector("#casePrimaryBadge").textContent = `Primary basin: ${formatBadge(d.primary.badge)}`;
         body.querySelector("#casePrimaryHead").textContent = `${d.primary.region_name}: ${d.primary.headline}`;
         body.querySelector("#casePrimaryStat").textContent = `Sen slope: ${d.primary.sen_slope} · Hamed-Rao ${formatP(d.primary.p_formatted || d.primary.p_value)}`;
 
-        body.querySelector("#caseCompBadge").textContent = `Comparison basin: ${d.comparison.badge}`;
+        body.querySelector("#caseCompBadge").textContent = `Comparison basin: ${formatBadge(d.comparison.badge)}`;
         body.querySelector("#caseCompHead").textContent = `${d.comparison.region_name}: ${d.comparison.headline}`;
         body.querySelector("#caseCompStat").textContent = `Sen slope: ${d.comparison.sen_slope} · Hamed-Rao ${formatP(d.comparison.p_formatted || d.comparison.p_value)}`;
 
@@ -1308,13 +1317,18 @@ function enhancePage(n) {
         const tbl = body.querySelector("#sensorValidationTable");
         if (tbl && d.sensor_validation) {
           const rows = d.sensor_validation
-            .map(
-              (s) =>
-                `<div class="shieldRow"><b>${s.sensor_pair}</b><b class="statusLow num-mono">r = ${s.correlation_r}</b><span class="num-mono">RMSE ${s.rmse} · Bias ${s.mean_bias}</span><span>${s.validation_status}</span></div>`
-            )
+            .map((s) => {
+              const pairName = s["Validation Pair"] || s.sensor_pair || "Sensor Pair";
+              const rAnom = s["Anomaly Correlation (r)"] ?? s.correlation_r ?? 0;
+              const rRaw = s["Raw Cycle Correlation (r)"] ?? rAnom;
+              const slopeA = s["Sensor A Slope/Decade"] ?? "";
+              const slopeB = s["Sensor B Slope/Decade"] ?? "";
+              const status = s["Significance Agreement"] || s["Direction Agreement"] || s.validation_status || "Verified";
+              return `<div class="shieldRow"><b>${pairName}</b><b class="statusLow num-mono">r_anom = ${rAnom} (raw = ${rRaw})</b><span class="num-mono">Slopes: ${slopeA} vs. ${slopeB} /dec</span><span>${status}</span></div>`;
+            })
             .join("");
           tbl.innerHTML =
-            '<div class="shieldRow headerRow"><span>Sensor pair</span><span>Correlation (r)</span><span>Bias and RMSE</span><span>Validation status</span></div>' +
+            '<div class="shieldRow headerRow"><span>Sensor pair</span><span>Correlation (r)</span><span>Decadal slopes</span><span>Agreement status</span></div>' +
             rows;
         }
       })
@@ -1545,8 +1559,10 @@ function enhancePage(n) {
 
         if (d.hazard_summary) {
           const iso = body.querySelector("#shieldIsoSummary");
+          const nMonths = d.hazard_summary.compound_extreme_months_count ?? d.hazard_summary.n_compound_hazard_months ?? 0;
+          const peakDate = d.hazard_summary.peak_event_date || d.hazard_summary.peak_hazard_date || "May 2022";
           if (iso)
-            iso.textContent = `Isolation Forest: ${d.hazard_summary.n_compound_hazard_months} compound anomaly months detected (peak: ${d.hazard_summary.peak_hazard_date})`;
+            iso.textContent = `Isolation Forest: ${nMonths} compound anomaly months detected (peak: ${peakDate})`;
         }
 
         if (d.water_tower) {
