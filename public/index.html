@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en"><head>
+<script>window.__HATCHABLE__&&(window.__HATCHABLE__.primaryOrigin="https://himalaya-trend-lab.hatchable.site");</script>
+<script>window.__HATCHABLE__={"slug":"himalaya-trend-lab","api":"/api","primaryOrigin":"https://himalaya-trend-lab.hatchable.site"};</script><script src="/__hatchable/config.js?v=9"></script><script src="/__hatchable/badge.js?v=9&b=0" defer></script><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Himalaya Trend Lab — Pakistan Glacier Intelligence</title><meta name="description" content="Himalaya Trend Lab — Be a Data Detective for Pakistan's Glaciers."><link rel="stylesheet" href="/app.css?v=20261114v3"></head>
+<body>
+<div id="cursor"></div><div class="noise"></div>
+<nav class="topbar">
+  <a class="brand" href="#home"><span class="brandmark">✦</span><span>HIMALAYA<br><b>TREND LAB</b></span></a>
+  <div class="navlinks">
+    <a href="#investigate">Investigate</a>
+    <a href="#cases">Demo Cases</a>
+    <a href="#notebook">Notebook</a>
+    <a href="#method">Methodology</a>
+    <a href="#ml">AI/ML Lab</a>
+    <a href="#shield">Shield</a>
+  </div>
+  <div class="navRightActions" style="display:flex;gap:8px;align-items:center">
+    <button class="navUtilBtn" id="btnAudioToggle" type="button" title="Toggle Ambient Mountain Wind & Orbital Telemetry Audio">🔇 Audio Off</button>
+    <button class="navUtilBtn tourBtn" id="btnAutoTour" type="button" title="Launch 60-Second Automated Judge Presentation Tour">▶ 60s Judge Tour</button>
+    <button class="navcta" onclick="location.hash='investigate'">Enter Lab <span>↗</span></button>
+  </div>
+</nav>
+<main id="view"></main>
+<div id="svgTooltip" class="svgTooltip" style="display:none"></div>
+<div id="autoTourBar" class="autoTourBar" style="display:none">
+  <div class="mono" id="autoTourStepTag" style="color:#f2c56b">JUDGE AUTO-TOUR // STEP 1 OF 6</div>
+  <strong id="autoTourCaption">Exploring Pakistan's 7,253 glaciers from orbit to ice...</strong>
+  <button class="navUtilBtn" id="btnStopTour" type="button">✕ Stop Tour</button>
+</div>
+<button id="aiCopilotBtn" class="aiCopilotBtn" type="button">✦ Ask Glacier Detective AI</button>
+<div id="aiCopilotDrawer" class="aiCopilotDrawer" style="display:none">
+  <div class="aiDrawerHead">
+    <div><div class="mono">EARTH SYSTEM COPILOT // LIVE TELEMETRY</div><strong>Glacier Detective AI Assistant</strong></div>
+    <button class="navUtilBtn" id="btnCloseAi" type="button">✕</button>
+  </div>
+  <div class="aiChips">
+    <button class="aiQuickChip" data-q="Why is the Karakoram stable while Hindu Kush melts?">Karakoram Anomaly vs. Hindu Kush?</button>
+    <button class="aiQuickChip" data-q="What caused the May 2022 Shisper GLOF & Hassanabad Bridge collapse?">May 2022 Shisper GLOF?</button>
+    <button class="aiQuickChip" data-q="Why use Hamed-Rao Mann-Kendall, Sen's slope, and BH-FDR instead of OLS?">Why Hamed–Rao & Sen's Slope?</button>
+    <button class="aiQuickChip" data-q="When is Peak Water at Tarbela Dam in the Indus Basin?">Indus Peak Water Year?</button>
+    <button class="aiQuickChip" data-q="What do the pre-trained Machine Learning models reveal?">ML Drivers & Changepoints?</button>
+  </div>
+  <div id="aiChatBody" class="aiChatBody">
+    <div class="aiBubble">
+      <div class="mono">DETECTIVE AI // READY</div>
+      <h4>Ask me anything about Pakistan's glaciers, statistical trend tests, or ML models!</h4>
+      <p>Click a quick question above or type your own below. Every answer cites live calculations from our 1981–2026 NASA & Meteomatics engine.</p>
+    </div>
+  </div>
+  <form id="aiAskForm" class="aiAskForm">
+    <input id="aiQuestionInput" type="text" placeholder="Ask e.g. 'What is the trend in Hunza?' or 'Explain Shisper GLOF'..." required>
+    <button class="btn primary" type="submit" style="padding:10px 16px">Ask ↗</button>
+  </form>
+</div>
+<footer><span>NASA SPACE APPS CHALLENGE 2026</span><span>BE AN EARTH SYSTEM TREND DETECTIVE</span><span>Prepared by Ali Hassan</span></footer>
+<script src="/app.js?v=20261114v3"></script></body></html>

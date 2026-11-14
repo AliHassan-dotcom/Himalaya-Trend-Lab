@@ -1,0 +1,8 @@
+date,glacier_id,glacier_name,range,snout_temp_c,precip_mm,snowmelt_mm,freezing_level_m,ela_m,glof_trigger_score,alert_level,source
+2026-11-14,hispar,Hispar Glacier (Nagar Valley),Karakoram,-5.29,0.7,0.3,2236.0,4900,37.7,NORMAL GREEN,Meteomatics Calibrated Mountain Forecast
+2026-11-15,hispar,Hispar Glacier (Nagar Valley),Karakoram,-5.68,1.6,0.5,2176.0,4900,37.8,NORMAL GREEN,Meteomatics Calibrated Mountain Forecast
+2026-11-16,hispar,Hispar Glacier (Nagar Valley),Karakoram,-5.06,3.4,1.2,2272.0,4900,38.4,NORMAL GREEN,Meteomatics Calibrated Mountain Forecast
+2026-11-17,hispar,Hispar Glacier (Nagar Valley),Karakoram,-2.65,2.4,0.8,2642.0,4900,38.1,NORMAL GREEN,Meteomatics Calibrated Mountain Forecast
+2026-11-18,hispar,Hispar Glacier (Nagar Valley),Karakoram,-0.91,0.0,6.7,2910.0,4900,43.1,NORMAL GREEN,Meteomatics Calibrated Mountain Forecast
+2026-11-19,hispar,Hispar Glacier (Nagar Valley),Karakoram,-0.34,1.3,9.5,2998.0,4900,45.5,MODERATE WATCH,Meteomatics Calibrated Mountain Forecast
+2026-11-20,hispar,Hispar Glacier (Nagar Valley),Karakoram,0.2,0.0,11.3,3081.0,4900,47.0,MODERATE WATCH,Meteomatics Calibrated Mountain Forecast

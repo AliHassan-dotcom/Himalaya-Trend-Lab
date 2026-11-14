@@ -1,0 +1,8 @@
+date,glacier_id,glacier_name,range,snout_temp_c,precip_mm,snowmelt_mm,freezing_level_m,ela_m,glof_trigger_score,alert_level,source
+2026-11-14,baltoro,Baltoro Glacier & Concordia (K2 Sector),Karakoram,-4.09,6.9,2.4,2781.0,5180,30.6,NORMAL GREEN,Meteomatics Calibrated Mountain Forecast
+2026-11-15,baltoro,Baltoro Glacier & Concordia (K2 Sector),Karakoram,-2.21,0.8,1.5,3070.0,5180,29.9,NORMAL GREEN,Meteomatics Calibrated Mountain Forecast
+2026-11-16,baltoro,Baltoro Glacier & Concordia (K2 Sector),Karakoram,-1.35,0.0,4.8,3202.0,5180,32.7,NORMAL GREEN,Meteomatics Calibrated Mountain Forecast
+2026-11-17,baltoro,Baltoro Glacier & Concordia (K2 Sector),Karakoram,-1.72,1.5,3.8,3145.0,5180,31.8,NORMAL GREEN,Meteomatics Calibrated Mountain Forecast
+2026-11-18,baltoro,Baltoro Glacier & Concordia (K2 Sector),Karakoram,-2.3,0.9,1.2,3056.0,5180,29.6,NORMAL GREEN,Meteomatics Calibrated Mountain Forecast
+2026-11-19,baltoro,Baltoro Glacier & Concordia (K2 Sector),Karakoram,1.8,0.8,18.3,3687.0,5180,44.2,NORMAL GREEN,Meteomatics Calibrated Mountain Forecast
+2026-11-20,baltoro,Baltoro Glacier & Concordia (K2 Sector),Karakoram,0.96,14.8,19.7,3558.0,5180,45.3,MODERATE WATCH,Meteomatics Calibrated Mountain Forecast

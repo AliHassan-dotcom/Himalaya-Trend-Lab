@@ -1,0 +1,91 @@
+"""
+Configuration package for Himalaya Trend Lab.
+Exposes global settings, preset glacier regions, 15 iconic individual glacier hotspots,
+the Earth science variable catalogue, Detective Casebook missions, Indus Water Tower configs,
+Dark-Ice Albedo physics, Signal-vs-Noise playground presets, and the Judge's Executive Tour.
+"""
+from config.settings import (
+    BASE_DIR,
+    CACHE_DIR,
+    EXPORT_DIR,
+    APP_TITLE,
+    APP_SUBTITLE,
+    APP_VERSION,
+    CHALLENGE_NAME,
+    AUTHOR_NAME,
+    DEFAULT_ALPHA,
+    SIGNIFICANCE_LEVELS,
+    MIN_YEARS_RECOMMENDED,
+    MIN_YEARS_ABSOLUTE,
+    MAX_MISSING_FRACTION_WARN,
+    FDR_ALPHA,
+    ENABLE_CACHE,
+    has_meteomatics_credentials,
+)
+from config.regions import (
+    PRESET_REGIONS,
+    get_region,
+    get_region_options,
+    build_custom_region,
+)
+from config.glaciers import (
+    GLACIER_HOTSPOTS,
+    get_glacier,
+    get_glaciers_by_basin,
+)
+from config.variables import (
+    DETECTIVE_QUESTIONS,
+    VARIABLES_CATALOGUE,
+    REFERENCE_DATASETS,
+    get_variable,
+    get_variables_by_theme,
+    get_themes,
+)
+from config.missions import (
+    DETECTIVE_MISSIONS,
+    INDUS_WATER_TOWER_CONFIG,
+    CLIMATE_SCENARIOS,
+    TELECONNECTION_INDICES,
+    DARK_ICE_ALBEDO_CONFIG,
+    SIGNAL_NOISE_PRESETS,
+    JUDGE_EXECUTIVE_TOUR_STEPS,
+)
+
+__all__ = [
+    "BASE_DIR",
+    "CACHE_DIR",
+    "EXPORT_DIR",
+    "APP_TITLE",
+    "APP_SUBTITLE",
+    "APP_VERSION",
+    "CHALLENGE_NAME",
+    "AUTHOR_NAME",
+    "DEFAULT_ALPHA",
+    "SIGNIFICANCE_LEVELS",
+    "MIN_YEARS_RECOMMENDED",
+    "MIN_YEARS_ABSOLUTE",
+    "MAX_MISSING_FRACTION_WARN",
+    "FDR_ALPHA",
+    "ENABLE_CACHE",
+    "has_meteomatics_credentials",
+    "PRESET_REGIONS",
+    "get_region",
+    "get_region_options",
+    "build_custom_region",
+    "GLACIER_HOTSPOTS",
+    "get_glacier",
+    "get_glaciers_by_basin",
+    "DETECTIVE_QUESTIONS",
+    "VARIABLES_CATALOGUE",
+    "REFERENCE_DATASETS",
+    "get_variable",
+    "get_variables_by_theme",
+    "get_themes",
+    "DETECTIVE_MISSIONS",
+    "INDUS_WATER_TOWER_CONFIG",
+    "CLIMATE_SCENARIOS",
+    "TELECONNECTION_INDICES",
+    "DARK_ICE_ALBEDO_CONFIG",
+    "SIGNAL_NOISE_PRESETS",
+    "JUDGE_EXECUTIVE_TOUR_STEPS",
+]

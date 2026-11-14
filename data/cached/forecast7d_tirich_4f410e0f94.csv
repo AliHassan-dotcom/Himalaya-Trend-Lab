@@ -1,0 +1,8 @@
+date,glacier_id,glacier_name,range,snout_temp_c,precip_mm,snowmelt_mm,freezing_level_m,ela_m,glof_trigger_score,alert_level,source
+2026-11-14,tirich,Tirich Mir & Reshun Glaciers (Chitral),Hindu Kush,-5.04,0.2,0.1,2565.0,4750,46.3,MODERATE WATCH,Meteomatics Calibrated Mountain Forecast
+2026-11-15,tirich,Tirich Mir & Reshun Glaciers (Chitral),Hindu Kush,-5.28,3.2,1.1,2528.0,4750,47.1,MODERATE WATCH,Meteomatics Calibrated Mountain Forecast
+2026-11-16,tirich,Tirich Mir & Reshun Glaciers (Chitral),Hindu Kush,-5.08,2.2,0.8,2558.0,4750,46.9,MODERATE WATCH,Meteomatics Calibrated Mountain Forecast
+2026-11-17,tirich,Tirich Mir & Reshun Glaciers (Chitral),Hindu Kush,-6.37,5.2,1.8,2360.0,4750,47.7,MODERATE WATCH,Meteomatics Calibrated Mountain Forecast
+2026-11-18,tirich,Tirich Mir & Reshun Glaciers (Chitral),Hindu Kush,-4.65,3.9,1.4,2625.0,4750,47.4,MODERATE WATCH,Meteomatics Calibrated Mountain Forecast
+2026-11-19,tirich,Tirich Mir & Reshun Glaciers (Chitral),Hindu Kush,-5.35,0.1,0.0,2517.0,4750,46.2,MODERATE WATCH,Meteomatics Calibrated Mountain Forecast
+2026-11-20,tirich,Tirich Mir & Reshun Glaciers (Chitral),Hindu Kush,-7.5,2.5,0.9,2186.0,4750,47.0,MODERATE WATCH,Meteomatics Calibrated Mountain Forecast

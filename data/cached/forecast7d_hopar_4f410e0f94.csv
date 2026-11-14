@@ -1,0 +1,8 @@
+date,glacier_id,glacier_name,range,snout_temp_c,precip_mm,snowmelt_mm,freezing_level_m,ela_m,glof_trigger_score,alert_level,source
+2026-11-14,hopar,Hopar (Bualtar & Barpu) Glaciers,Karakoram,-0.42,6.6,11.0,2315.0,4680,41.8,NORMAL GREEN,Meteomatics Calibrated Mountain Forecast
+2026-11-15,hopar,Hopar (Bualtar & Barpu) Glaciers,Karakoram,-0.09,2.9,11.1,2366.0,4680,41.9,NORMAL GREEN,Meteomatics Calibrated Mountain Forecast
+2026-11-16,hopar,Hopar (Bualtar & Barpu) Glaciers,Karakoram,0.64,3.1,14.3,2478.0,4680,44.6,NORMAL GREEN,Meteomatics Calibrated Mountain Forecast
+2026-11-17,hopar,Hopar (Bualtar & Barpu) Glaciers,Karakoram,2.08,11.0,23.1,2700.0,4680,66.1,HIGH AMBER,Meteomatics Calibrated Mountain Forecast
+2026-11-18,hopar,Hopar (Bualtar & Barpu) Glaciers,Karakoram,3.51,3.2,26.4,2920.0,4680,54.9,MODERATE WATCH,Meteomatics Calibrated Mountain Forecast
+2026-11-19,hopar,Hopar (Bualtar & Barpu) Glaciers,Karakoram,4.76,2.8,31.5,3112.0,4680,59.2,MODERATE WATCH,Meteomatics Calibrated Mountain Forecast
+2026-11-20,hopar,Hopar (Bualtar & Barpu) Glaciers,Karakoram,6.84,3.8,40.6,3432.0,4680,67.0,HIGH AMBER,Meteomatics Calibrated Mountain Forecast

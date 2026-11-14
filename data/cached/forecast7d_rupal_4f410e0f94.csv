@@ -1,0 +1,8 @@
+date,glacier_id,glacier_name,range,snout_temp_c,precip_mm,snowmelt_mm,freezing_level_m,ela_m,glof_trigger_score,alert_level,source
+2026-11-14,rupal,Rupal & Bazhin Glaciers (Astore / Nanga Parbat South),Western Himalaya,-4.07,7.0,2.4,2894.0,4640,40.5,NORMAL GREEN,Meteomatics Calibrated Mountain Forecast
+2026-11-15,rupal,Rupal & Bazhin Glaciers (Astore / Nanga Parbat South),Western Himalaya,-3.8,2.7,1.0,2935.0,4640,39.4,NORMAL GREEN,Meteomatics Calibrated Mountain Forecast
+2026-11-16,rupal,Rupal & Bazhin Glaciers (Astore / Nanga Parbat South),Western Himalaya,-4.27,15.6,5.4,2863.0,4640,43.1,NORMAL GREEN,Meteomatics Calibrated Mountain Forecast
+2026-11-17,rupal,Rupal & Bazhin Glaciers (Astore / Nanga Parbat South),Western Himalaya,-3.61,1.5,0.5,2965.0,4640,38.9,NORMAL GREEN,Meteomatics Calibrated Mountain Forecast
+2026-11-18,rupal,Rupal & Bazhin Glaciers (Astore / Nanga Parbat South),Western Himalaya,-3.66,4.8,1.7,2957.0,4640,39.9,NORMAL GREEN,Meteomatics Calibrated Mountain Forecast
+2026-11-19,rupal,Rupal & Bazhin Glaciers (Astore / Nanga Parbat South),Western Himalaya,-1.92,10.5,6.1,3225.0,4640,43.7,NORMAL GREEN,Meteomatics Calibrated Mountain Forecast
+2026-11-20,rupal,Rupal & Bazhin Glaciers (Astore / Nanga Parbat South),Western Himalaya,-0.6,12.6,12.4,3428.0,4640,49.0,MODERATE WATCH,Meteomatics Calibrated Mountain Forecast

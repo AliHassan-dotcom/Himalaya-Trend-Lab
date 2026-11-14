@@ -1,0 +1,8 @@
+date,glacier_id,glacier_name,range,snout_temp_c,precip_mm,snowmelt_mm,freezing_level_m,ela_m,glof_trigger_score,alert_level,source
+2026-11-14,biafo,Biafo Glacier (Snow Lake Corridor),Karakoram,-5.74,3.6,1.3,2237.0,4950,26.4,NORMAL GREEN,Meteomatics Calibrated Mountain Forecast
+2026-11-15,biafo,Biafo Glacier (Snow Lake Corridor),Karakoram,-6.7,8.6,3.0,2089.0,4950,27.8,NORMAL GREEN,Meteomatics Calibrated Mountain Forecast
+2026-11-16,biafo,Biafo Glacier (Snow Lake Corridor),Karakoram,-3.74,3.8,1.3,2545.0,4950,26.4,NORMAL GREEN,Meteomatics Calibrated Mountain Forecast
+2026-11-17,biafo,Biafo Glacier (Snow Lake Corridor),Karakoram,-2.31,0.5,1.0,2765.0,4950,26.2,NORMAL GREEN,Meteomatics Calibrated Mountain Forecast
+2026-11-18,biafo,Biafo Glacier (Snow Lake Corridor),Karakoram,-1.9,1.3,3.0,2828.0,4950,27.8,NORMAL GREEN,Meteomatics Calibrated Mountain Forecast
+2026-11-19,biafo,Biafo Glacier (Snow Lake Corridor),Karakoram,-1.15,5.3,7.5,2943.0,4950,31.7,NORMAL GREEN,Meteomatics Calibrated Mountain Forecast
+2026-11-20,biafo,Biafo Glacier (Snow Lake Corridor),Karakoram,-1.1,14.0,10.8,2951.0,4950,34.5,NORMAL GREEN,Meteomatics Calibrated Mountain Forecast
