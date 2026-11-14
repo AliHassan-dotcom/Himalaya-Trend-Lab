@@ -1222,7 +1222,7 @@ footer {
 }
 
 /* ============================================================================
-   RESPONSIVE BREAKPOINTS (1366x768 & 390x844 Mobile — Zero Horizontal Scroll)
+   RESPONSIVE BREAKPOINTS (1366x768 & 390x844 Mobile - Zero Horizontal Scroll)
    ============================================================================ */
 @media (max-width: 1024px) {
   .heroGrid,

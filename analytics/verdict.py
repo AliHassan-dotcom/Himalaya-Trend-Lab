@@ -46,27 +46,42 @@ def generate_plain_language_verdict(
     tendency_word = "upward" if slope_dec > 0 else ("downward" if slope_dec < 0 else "flat")
     sign_prefix = "+" if slope_dec > 0 else ""
 
-    # Format p-value cleanly
-    p_str = "p < 0.0001" if p_val < 0.0001 else f"p = {p_val:.4f}"
+    # Format p-value cleanly (never print 0.0000)
+    def _fmt_p(val: float, prefix: str = "p") -> str:
+        return f"{prefix} < 0.0001" if val < 0.0001 else f"{prefix} = {val:.4f}"
+
+    p_str = _fmt_p(p_val, "p")
 
     # Rule 1 & 2: Headline Verdict (Significant vs. Not Yet Significant)
     if is_sig:
-        badge_status = "SIGNIFICANT INCREASE" if slope_dec > 0 else "SIGNIFICANT DECREASE"
-        badge_color = "#dc2626" if (slope_dec > 0 and not var_info.get("invert_hazard", False)) or (slope_dec < 0 and var_info.get("invert_hazard", False)) else "#2563eb"
+        badge_status = "Significant increase" if slope_dec > 0 else "Significant decrease"
+        badge_color = "#e06c3a" if (slope_dec > 0 and not var_info.get("invert_hazard", False)) or (slope_dec < 0 and var_info.get("invert_hazard", False)) else "#58a6ff"
         headline = (
             f"{short_name} in the {reg_name} has {direction_word} by {sign_prefix}{slope_dec:.2f} {dec_units} "
-            f"(95% CI: [{ci_low:+.2f}, {ci_high:+.2f}] {dec_units}) over {start_yr}–{end_yr}, "
-            f"and the long-term trend is statistically significant ({p_str} < {alpha})."
+            f"(95% CI: [{ci_low:+.2f}, {ci_high:+.2f}] {dec_units}) from {start_yr} to {end_yr}, "
+            f"and the long-term trend is statistically significant ({p_str}, alpha = {alpha})."
         )
     else:
-        badge_status = "NO SIGNIFICANT TREND YET"
-        badge_color = "#64748b"
+        badge_status = "No significant trend yet"
+        badge_color = "#8b949e"
         headline = (
             f"{short_name} in the {reg_name} shows a slight {tendency_word} tendency "
             f"({sign_prefix}{slope_dec:.2f} {dec_units}, 95% CI: [{ci_low:+.2f}, {ci_high:+.2f}]), "
-            f"but the trend is NOT yet statistically significant ({p_str} >= {alpha}). "
+            f"but the trend is not yet statistically significant ({p_str}, alpha = {alpha}). "
             f"Year-to-year mountain variability currently outweighs the long-term signal."
         )
+
+    how_much_text = (
+        f"Sen's robust rate of change is {sign_prefix}{slope_dec:.3f} {dec_units} "
+        f"(OLS linear slope: {ols['slope_per_decade']:+.3f} {dec_units}), corresponding to a cumulative shift of "
+        f"{total_chg:+.2f} {units} across the {n_years:.1f}-year record ({start_yr} to {end_yr})."
+    )
+    sig_text = (
+        f"{'Yes, statistically significant' if is_sig else 'No, not statistically significant yet'}: "
+        f"{mk['test_name']} yields tau = {mk['tau']:+.3f} and {p_str} at threshold alpha = {alpha}. "
+        f"The 95% confidence interval [{ci_low:+.3f}, {ci_high:+.3f}] "
+        f"{'does not cross zero, confirming a robust monotonic shift.' if is_sig else 'crosses or borders zero, meaning random climate variability cannot yet be ruled out.'}"
+    )
 
     # Four Core Detective Questions (Section 1)
     four_questions = {
@@ -80,43 +95,38 @@ def generate_plain_language_verdict(
             f"{reg_name} ({region_info['parent_range']}, mean elevation {region_info['mean_elevation_m']:,} m, "
             f"{region_info['glacier_area_km2']:,} km² of glacier ice / {region_info['glacier_fraction_pct']}% glacier cover)."
         ),
-        "how_much_is_it_changing": (
-            f"Sen's robust rate of change is {sign_prefix}{slope_dec:.3f} {dec_units} "
-            f"(OLS linear slope: {ols['slope_per_decade']:+.3f} {dec_units}), corresponding to a cumulative shift of "
-            f"{total_chg:+.2f} {units} across the {n_years:.1f}-year record ({start_yr}–{end_yr})."
-        ),
-        "is_it_significant": (
-            f"{'Yes — Statistically Significant' if is_sig else 'No — Not Statistically Significant Yet'}: "
-            f"{mk['test_name']} yields tau = {mk['tau']:+.3f} and {p_str} at threshold alpha = {alpha}. "
-            f"The 95% confidence interval [{ci_low:+.3f}, {ci_high:+.3f}] "
-            f"{'does not cross zero, confirming a robust monotonic shift.' if is_sig else 'crosses or borders zero, meaning random climate variability cannot yet be ruled out.'}"
-        ),
+        "how_much_is_it_changing": how_much_text,
+        "how_fast_is_it_changing": how_much_text,
+        "is_it_significant": sig_text,
+        "is_it_statistically_significant": sig_text,
     }
 
     # Autocorrelation & Data-Quality Warnings (Section 7.4 & 7.6)
     warnings: List[str] = []
     if n_years < MIN_YEARS_RECOMMENDED:
         warnings.append(
-            f"Short Record Warning: The selected period spans {n_years:.1f} years ({start_yr}–{end_yr}). "
-            f"Climatologists generally recommend at least {MIN_YEARS_RECOMMENDED}–30 years to separate long-term trends from decadal oscillations."
+            f"Short record warning: The selected period spans {n_years:.1f} years ({start_yr} to {end_yr}). "
+            f"Climatologists generally recommend at least {MIN_YEARS_RECOMMENDED} to 30 years to separate long-term trends from decadal oscillations."
         )
     if analysis["cloud_gap_fraction"] > MAX_MISSING_FRACTION_WARN:
         warnings.append(
-            f"Cloud Gap Note: {analysis['cloud_gap_fraction']*100:.1f}% of monthly optical satellite observations required cloud-gap interpolation."
+            f"Cloud gap note: {analysis['cloud_gap_fraction']*100:.1f}% of monthly optical satellite observations required cloud-gap interpolation."
         )
 
     mod_mk = analysis["mk_hamed_rao"]
+    raw_p_str = _fmt_p(analysis["mk_original"]["p_value"], "raw p")
+    adj_p_str = _fmt_p(mod_mk["p_value"], "adjusted p")
     if mod_mk.get("autocorrelation_detected", False):
         autocorr_note = (
-            f"Serial Autocorrelation Detected (Lag-1 r = {mod_mk['lag1_autocorr']:+.2f}): "
+            f"Serial autocorrelation detected (Lag-1 r = {mod_mk['lag1_autocorr']:+.2f}): "
             f"Monthly climate memory inflated raw variance by {mod_mk['variance_inflation_factor']:.2f}x. "
-            f"The Hamed-Rao Modified Mann-Kendall test automatically adjusted the p-value "
-            f"(from raw p = {analysis['mk_original']['p_value']:.4f} to adjusted p = {mod_mk['p_value']:.4f}) to prevent false positives."
+            f"The Hamed-Rao Modified Mann-Kendall test adjusted the significance value "
+            f"(from {raw_p_str} to {adj_p_str}) to prevent false positives."
         )
     else:
         autocorr_note = (
-            f"Low Serial Autocorrelation (Lag-1 r = {mod_mk['lag1_autocorr']:+.2f}, VIF = {mod_mk['variance_inflation_factor']:.2f}x): "
-            f"Original and Hamed-Rao Modified Mann-Kendall tests closely agree."
+            f"Low serial autocorrelation (Lag-1 r = {mod_mk['lag1_autocorr']:+.2f}, VIF = {mod_mk['variance_inflation_factor']:.2f}x): "
+            f"Original and Hamed-Rao Modified Mann-Kendall tests closely agree ({adj_p_str})."
         )
 
     return {
@@ -127,7 +137,7 @@ def generate_plain_language_verdict(
         "autocorrelation_note": autocorr_note,
         "warnings": warnings,
         "attribution_disclaimer": (
-            "Scientific Note: A statistically significant trend proves that a physical change is occurring "
-            "above background variability, but statistical trend tests alone detect change—not physical attribution."
+            "Scientific note: A statistically significant trend proves that a physical change is occurring "
+            "above background variability, but statistical trend tests alone detect change, not physical attribution."
         ),
     }

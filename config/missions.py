@@ -71,7 +71,7 @@ DETECTIVE_MISSIONS: List[Dict[str, Any]] = [
         "scientific_debrief": (
             "Spot on! Because over 55% of the Karakoram lies above 4,500 m and receives "
             "heavy winter snowfall from North Atlantic Oscillation (NAO) Westerlies, its high "
-            "accumulation zone buffered losses for decades—whereas the lower, warmer Hindu Kush "
+            "accumulation zone buffered losses for decades - whereas the lower, warmer Hindu Kush "
             "and Western Himalaya suffer steep, statistically significant snow losses."
         ),
     },
@@ -280,8 +280,8 @@ JUDGE_EXECUTIVE_TOUR_STEPS: List[Dict[str, str]] = [
         "pillar": "2. Regional Contrast Discovery",
         "title": "The 'Karakoram Anomaly' vs. Hindu Kush Retreat",
         "highlight": (
-            "Proves the challenge's central thesis—that neighbouring mountain ranges can behave "
-            "differently—by contrasting central Karakoram stability (Baltoro/Siachen) against rapid "
+            "Proves the challenge's central thesis - that neighbouring mountain ranges can behave "
+            "differently - by contrasting central Karakoram stability (Baltoro/Siachen) against rapid "
             "snow loss in the Hindu Kush (Chitral) and Western Himalaya (Astore/Neelum)."
         ),
         "target_tab": "Compare & Spatial Maps",

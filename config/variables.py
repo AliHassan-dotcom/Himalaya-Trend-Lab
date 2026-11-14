@@ -1,5 +1,4 @@
-"""
-Structured Earth Science Variable Catalogue & Guided Investigation Questions.
+"""Structured Earth Science Variable Catalogue & Guided Investigation Questions.
 Covers all 5 themes from the Himalaya Trend Lab specification:
 1. Snow
 2. Temperature
@@ -7,15 +6,14 @@ Covers all 5 themes from the Himalaya Trend Lab specification:
 4. Water (Hydrology)
 5. Atmosphere
 Plus static reference datasets (RGI/GLIMS Glacier Outlines & SRTM/ALOS Elevation).
-"""
-from typing import Dict, Any, List
+"""from typing import Dict, Any, List
 
 # Guided Investigation Questions for "Detective Mode" (Section 5.1)
 DETECTIVE_QUESTIONS: List[Dict[str, Any]] = [
     {
         "id": "warmer",
         "question": "Is it getting warmer?",
-        "icon": "🌡️",
+        "icon": "️",
         "theme": "Temperature",
         "description": (
             "Investigate whether surface and near-surface air temperatures above "
@@ -27,7 +25,7 @@ DETECTIVE_QUESTIONS: List[Dict[str, Any]] = [
     {
         "id": "less_snow",
         "question": "Is there less snow?",
-        "icon": "❄️",
+        "icon": "️",
         "theme": "Snow",
         "description": (
             "Test whether snow cover fraction and snow depth across the Karakoram, "
@@ -39,7 +37,7 @@ DETECTIVE_QUESTIONS: List[Dict[str, Any]] = [
     {
         "id": "rainfall_changing",
         "question": "Is rainfall or snowfall changing?",
-        "icon": "🌧️",
+        "icon": "️",
         "theme": "Precipitation",
         "description": (
             "Examine long-term total precipitation and snowfall trends, and discover "
@@ -51,7 +49,7 @@ DETECTIVE_QUESTIONS: List[Dict[str, Any]] = [
     {
         "id": "water_changing",
         "question": "Is water availability or melt changing?",
-        "icon": "💧",
+        "icon": "",
         "theme": "Water",
         "description": (
             "Analyze Snow Water Equivalent (SWE), glacier/snow melt runoff, and soil "
@@ -63,7 +61,7 @@ DETECTIVE_QUESTIONS: List[Dict[str, Any]] = [
     {
         "id": "atmosphere_changing",
         "question": "Are atmospheric humidity & aerosols changing?",
-        "icon": "🌫️",
+        "icon": "️",
         "theme": "Atmosphere",
         "description": (
             "Explore tropospheric relative humidity and aerosol optical depth (dust and "
@@ -84,7 +82,7 @@ VARIABLES_CATALOGUE: Dict[str, Dict[str, Any]] = {
         "theme": "Snow",
         "units": "%",
         "decade_units": "% / decade",
-        "source_mission": "NASA MODIS (Terra/Aqua) — MOD10CM / MYD10CM v6.1",
+        "source_mission": "NASA MODIS (Terra/Aqua) - MOD10CM / MYD10CM v6.1",
         "partner_source": "Meteomatics Snow Cover / Depth Assimilation",
         "nasa_power_param": "PRECSNO",  # Proxy fallback when syncing with NASA POWER
         "meteomatics_param": "snow_depth:cm",
@@ -174,7 +172,7 @@ VARIABLES_CATALOGUE: Dict[str, Dict[str, Any]] = {
         "theme": "Temperature",
         "units": "°C",
         "decade_units": "°C / decade",
-        "source_mission": "NASA MODIS (Terra) — MOD11C3 v6.1 Thermal Infrared",
+        "source_mission": "NASA MODIS (Terra) - MOD11C3 v6.1 Thermal Infrared",
         "partner_source": "Meteomatics Surface Skin Temperature (t_0m:C)",
         "nasa_power_param": "TS",
         "meteomatics_param": "t_0m:C",
@@ -347,7 +345,7 @@ VARIABLES_CATALOGUE: Dict[str, Dict[str, Any]] = {
     },
     "aerosols_omi": {
         "id": "aerosols_omi",
-        "name": "Aerosol Optical Depth (AOD 550nm — Dust & Soot)",
+        "name": "Aerosol Optical Depth (AOD 550nm - Dust & Soot)",
         "short_name": "Aerosol Optical Depth",
         "theme": "Atmosphere",
         "units": "AOD Index",
@@ -398,17 +396,14 @@ REFERENCE_DATASETS: List[Dict[str, str]] = [
 
 
 def get_variable(variable_id: str) -> Dict[str, Any]:
-    """Retrieve variable metadata by ID, defaulting to t2m_merra2."""
-    return VARIABLES_CATALOGUE.get(variable_id, VARIABLES_CATALOGUE["t2m_merra2"])
+    """Retrieve variable metadata by ID, defaulting to t2m_merra2."""return VARIABLES_CATALOGUE.get(variable_id, VARIABLES_CATALOGUE["t2m_merra2"])
 
 
 def get_variables_by_theme(theme: str = "All") -> List[Dict[str, Any]]:
-    """Return list of variable metadata dicts filtered by theme."""
-    if not theme or theme == "All":
+    """Return list of variable metadata dicts filtered by theme."""if not theme or theme == "All":
         return list(VARIABLES_CATALOGUE.values())
     return [v for v in VARIABLES_CATALOGUE.values() if v["theme"].lower() == theme.lower()]
 
 
 def get_themes() -> List[str]:
-    """Return ordered list of variable themes."""
-    return ["Snow", "Temperature", "Precipitation", "Water", "Atmosphere"]
+    """Return ordered list of variable themes."""return ["Snow", "Temperature", "Precipitation", "Water", "Atmosphere"]

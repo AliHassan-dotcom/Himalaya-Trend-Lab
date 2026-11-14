@@ -1,5 +1,5 @@
 """
-Himalaya Trend Lab — Main FastAPI Web Server & Analytical Backend (Layer 5).
+Himalaya Trend Lab - Main FastAPI Web Server & Analytical Backend (Layer 5).
 Serves the Hatchable Frontend (`public/index.html`, `public/app.css`, `public/app.js`,
 `public/assets/karakoram-k2.jpg`) and exposes live REST endpoints powered by:
 - Layer 1 (`config/`): 9 Basins, 15 Glaciers, 10 Variables, Missions, Scenarios
@@ -69,7 +69,7 @@ PUBLIC_DIR = BASE_DIR / "public"
 _ML_MEM_CACHE: Dict[str, Dict[str, Any]] = {}
 
 app = FastAPI(
-    title="Himalaya Trend Lab — Pakistan Glacier Intelligence",
+    title="Himalaya Trend Lab - Pakistan Glacier Intelligence",
     description="NASA Space Apps Challenge 2026: Be An Earth System Trend Detective | Prepared by Ali Hassan",
     version="1.0.0",
 )
@@ -114,6 +114,10 @@ VAR_LABEL_TO_ID = {
     "omi aerosols": "aerosols_omi",
     "aerosols_omi": "aerosols_omi",
 }
+
+
+def _fmt_p(p_val: float) -> str:
+    return "p < 0.0001" if float(p_val) < 0.0001 else f"p = {float(p_val):.4f}"
 
 
 def _resolve_region_id(place: str) -> str:
@@ -272,7 +276,7 @@ def api_ask(
     inv = api_investigate(place=region_id, variable=variable_id)
     return {
         "question": q,
-        "title": f"Live Detective Briefing: {inv['region_name']} — {inv['variable_name']}",
+        "title": f"Live Detective Briefing: {inv['region_name']} - {inv['variable_name']}",
         "answer": (
             f"{inv['verdict']['headline']} "
             f"Specifically: {inv['verdict']['four_questions']['what_is_changing']} "
@@ -353,8 +357,12 @@ def api_investigate(
         trend=s_df["anomaly_trend_sens"].tolist(),
         ci_low=s_df["anomaly_ci_low"].tolist(),
         ci_high=s_df["anomaly_ci_high"].tolist(),
-        label_left=f"DESEASONALIZED ANOMALY · SEN {sens['slope_per_decade']:+.2f} {var_info['decade_units']}",
-        label_right=f"{analysis['start_year']} → {analysis['end_year']}",
+        label_left=f"Deseasonalized anomaly ({var_info['units']}): Sen slope {sens['slope_per_decade']:+.2f} {var_info['decade_units']}",
+        label_right=f"{analysis['start_year']} to {analysis['end_year']}",
+        units=var_info["units"],
+        start_year=analysis["start_year"],
+        end_year=analysis["end_year"],
+        sen_annotation=f"Sen: {sens['slope_per_decade']:+.2f} {var_info['decade_units']}",
     )
     svg_seasonal = render_climatology_svg(analysis["climatology"], var_info["units"])
 
@@ -389,20 +397,25 @@ def api_investigate(
         c_s = c_an["series"]
         c_sens = c_an["sens_slope"]
         c_mk = c_an["primary_mk"]
+        c_p_str = _fmt_p(c_mk["p_value"])
         comparison_payload = {
             "region_id": comp_id,
             "region_name": comp_reg["name"],
             "headline": c_verd["headline"],
             "badge": c_verd["badge_status"],
             "sen_decade": f"{c_sens['slope_per_decade']:+.2f} {var_info['units']}",
-            "p_value": f"p = {c_mk['p_value']:.4f}" if c_mk["p_value"] >= 0.0001 else "p < 0.0001",
+            "p_value": c_p_str,
             "svg_anomaly": render_series_svg(
                 values=c_s["anomaly"].tolist(),
                 trend=c_s["anomaly_trend_sens"].tolist(),
                 ci_low=c_s["anomaly_ci_low"].tolist(),
                 ci_high=c_s["anomaly_ci_high"].tolist(),
-                label_left=f"COMPARE: {comp_reg['name'].upper()} · SEN {c_sens['slope_per_decade']:+.2f} {var_info['decade_units']}",
-                label_right=f"p = {c_mk['p_value']:.4f}",
+                label_left=f"Comparison ({comp_reg['name']}): Sen slope {c_sens['slope_per_decade']:+.2f} {var_info['decade_units']}",
+                label_right=c_p_str,
+                units=var_info["units"],
+                start_year=c_an["start_year"],
+                end_year=c_an["end_year"],
+                sen_annotation=f"Sen: {c_sens['slope_per_decade']:+.2f} {var_info['decade_units']}",
             ),
         }
 
@@ -428,8 +441,8 @@ def api_investigate(
             "sen_decade": f"{sens['slope_per_decade']:+.2f} {var_info['units']}",
             "sen_ci": f"[{sens['ci_low_decade']:+.2f}, {sens['ci_high_decade']:+.2f}]",
             "ols_decade": f"{ols['slope_per_decade']:+.2f} {var_info['units']}",
-            "mk_tau": f"τ = {mk['tau']:+.2f}",
-            "hamed_rao_p": f"p = {mk['p_value']:.4f}" if mk["p_value"] >= 0.0001 else "p < 0.0001",
+            "mk_tau": f"tau = {mk['tau']:+.2f}",
+            "hamed_rao_p": _fmt_p(mk["p_value"]),
             "lag1_autocorr": f"{analysis['mk_hamed_rao']['lag1_autocorr']:+.2f}",
             "vif": f"{analysis['mk_hamed_rao']['variance_inflation_factor']:.2f}x",
             "total_change": f"{sens['total_change_over_period']:+.2f} {var_info['units']}",
@@ -471,13 +484,19 @@ def api_cases(case_index: int = 0):
     verd2 = generate_plain_language_verdict(res2, reg2, var_info)
 
     s1 = res1["series"]
+    p1_str = _fmt_p(res1["primary_mk"]["p_value"])
+    p2_str = _fmt_p(res2["primary_mk"]["p_value"])
     svg1 = render_series_svg(
         values=s1["anomaly"].tolist(),
         trend=s1["anomaly_trend_sens"].tolist(),
         ci_low=s1["anomaly_ci_low"].tolist(),
         ci_high=s1["anomaly_ci_high"].tolist(),
-        label_left=f"{reg1['name'].upper()} · SEN {res1['sens_slope']['slope_per_decade']:+.2f} {var_info['decade_units']}",
-        label_right=f"p = {res1['primary_mk']['p_value']:.4f}",
+        label_left=f"{reg1['name']}: Sen slope {res1['sens_slope']['slope_per_decade']:+.2f} {var_info['decade_units']}",
+        label_right=p1_str,
+        units=var_info["units"],
+        start_year=res1["start_year"],
+        end_year=res1["end_year"],
+        sen_annotation=f"Sen: {res1['sens_slope']['slope_per_decade']:+.2f} {var_info['decade_units']}",
     )
 
     return {
@@ -488,6 +507,7 @@ def api_cases(case_index: int = 0):
             "badge": verd1["badge_status"],
             "sen_slope": f"{res1['sens_slope']['slope_per_decade']:+.2f} {var_info['decade_units']}",
             "p_value": res1["primary_mk"]["p_value"],
+            "p_formatted": p1_str,
         },
         "comparison": {
             "region_name": reg2["name"],
@@ -495,6 +515,7 @@ def api_cases(case_index: int = 0):
             "badge": verd2["badge_status"],
             "sen_slope": f"{res2['sens_slope']['slope_per_decade']:+.2f} {var_info['decade_units']}",
             "p_value": res2["primary_mk"]["p_value"],
+            "p_formatted": p2_str,
         },
         "svg": svg1,
     }
@@ -548,8 +569,12 @@ def api_ml(
         trend=gpr_s["gpr_nonlinear_trend"].tolist(),
         ci_low=gpr_s["gpr_ci_low"].tolist(),
         ci_high=gpr_s["gpr_ci_high"].tolist(),
-        label_left=f"GPR NON-LINEAR TREND · CHANGEPOINT {gpr['changepoint_year']}",
-        label_right=f"R² = {gpr['gpr_r2']:.2f}",
+        label_left=f"Gaussian Process non-linear trend ({var_info['units']}): changepoint {gpr['changepoint_year']}",
+        label_right=f"R2 = {gpr['gpr_r2']:.2f}",
+        units=var_info["units"],
+        start_year=int(gpr_s["year"].min()),
+        end_year=int(gpr_s["year"].max()),
+        sen_annotation=f"Changepoint: {gpr['changepoint_year']}",
     )
 
     fc_df = fcst["forecast_df"]
@@ -558,8 +583,12 @@ def api_ml(
         trend=fc_df["forecast"].tolist(),
         ci_low=fc_df["ci_low_95"].tolist(),
         ci_high=fc_df["ci_high_95"].tolist(),
-        label_left=f"2026–2029 ML FORECAST ({var_info['short_name'].upper()})",
-        label_right=f"TEST R² = {fcst['metrics']['test_r2']:.2f} · RMSE = {fcst['metrics']['test_rmse']:.2f}",
+        label_left=f"2026 to 2029 ML forecast: {var_info['short_name']} ({var_info['units']})",
+        label_right=f"Test R2 = {fcst['metrics']['test_r2']:.2f}, RMSE = {fcst['metrics']['test_rmse']:.2f}",
+        units=var_info["units"],
+        start_year=2026,
+        end_year=2029,
+        sen_annotation=f"Test R2 = {fcst['metrics']['test_r2']:.2f}",
     )
 
     drivers_list = [
@@ -625,8 +654,12 @@ def api_shield(
         trend=base_vals,
         ci_low=[v - 2.8 for v in proj_vals],
         ci_high=[v + 2.8 for v in proj_vals],
-        label_left=f"TARBELA DAM INFLOW (MAF) · PEAK WATER {water_sim['peak_water_year']} ({water_sim['peak_inflow_maf']} MAF)",
-        label_right="2020 → 2080 PROJECTION",
+        label_left=f"Tarbela Dam annual inflow (MAF): Peak Water {water_sim['peak_water_year']} ({water_sim['peak_inflow_maf']} MAF)",
+        label_right="2020 to 2080 projection",
+        units="MAF / yr",
+        start_year=2020,
+        end_year=2080,
+        sen_annotation=f"Peak: {water_sim['peak_water_year']} ({water_sim['peak_inflow_maf']} MAF)",
     )
 
     return {
@@ -745,7 +778,7 @@ def api_export_pdf(
 
 
 @app.get("/api/export/certificate")
-def api_export_certificate(name: str = "Ali Hassan — Earth System Detective"):
+def api_export_certificate(name: str = "Ali Hassan - Earth System Detective"):
     """Generate and download the Official Earth System Trend Detective Certificate PDF."""
     pdf_bytes = generate_detective_certificate_pdf(recipient_name=name)
     return Response(

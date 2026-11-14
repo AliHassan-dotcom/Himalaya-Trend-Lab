@@ -17,9 +17,9 @@ def analyze_teleconnections(enriched_df: pd.DataFrame) -> pd.DataFrame:
     """
     Correlate deseasonalized regional climate anomalies against global atmospheric
     teleconnection indices:
-    1. North Atlantic Oscillation (NAO — Winter Westerlies driver)
-    2. El Niño–Southern Oscillation (ENSO / Niño 3.4 — Monsoon & temperature modulator)
-    3. Indian Ocean Dipole (IOD — Arabian Sea moisture & spring warmth transport)
+    1. North Atlantic Oscillation (NAO - Winter Westerlies driver)
+    2. El Niño–Southern Oscillation (ENSO / Niño 3.4 - Monsoon & temperature modulator)
+    3. Indian Ocean Dipole (IOD - Arabian Sea moisture & spring warmth transport)
     """
     anom = enriched_df["anomaly"].values
     rows = []

@@ -1,4 +1,4 @@
-# Himalaya Trend Lab — Be a Data Detective for Pakistan's Glaciers
+# Himalaya Trend Lab - Be a Data Detective for Pakistan's Glaciers
 
 **2026 NASA Space Apps Challenge** | **Challenge:** *Be An Earth System Trend Detective*  
 **Prepared By:** Ali Hassan | **Version:** 1.0
@@ -6,9 +6,9 @@
 ---
 
 ## 1. Mission Overview
-Pakistan is home to **7,253 glaciers** across the Karakoram, Hindu Kush, and Western Himalaya—more glacial ice than anywhere on Earth outside the polar regions. While these glaciers sustain **240 million people** downstream via the Indus River (`64.5 MAF` mean annual inflow at Tarbela Dam and `15,827 MW` of hydropower), rapid warming and rising freezing levels also trigger catastrophic **Glacial Lake Outburst Floods (GLOFs)**, such as the May 7, 2022 Shisper Glacier outburst flood that destroyed the Hassanabad Bridge on the Karakoram Highway.
+Pakistan is home to **7,253 glaciers** across the Karakoram, Hindu Kush, and Western Himalaya - more glacial ice than anywhere on Earth outside the polar regions. While these glaciers sustain **240 million people** downstream via the Indus River (`64.5 MAF` mean annual inflow at Tarbela Dam and `15,827 MW` of hydropower), rapid warming and rising freezing levels also trigger catastrophic **Glacial Lake Outburst Floods (GLOFs)**, such as the May 7, 2022 Shisper Glacier outburst flood that destroyed the Hassanabad Bridge on the Karakoram Highway.
 
-**Himalaya Trend Lab** is an interactive scientific workbench and cinematic scrollytelling web application that empowers researchers, students, and disaster planners to interrogate **45 years (1981–2026)** of NASA satellite observations and Meteomatics high-mountain weather data—separating genuine long-term cryosphere trends from seasonal cycles, autocorrelation, and short-term weather noise.
+**Himalaya Trend Lab** is an interactive scientific workbench and cinematic scrollytelling web application that empowers researchers, students, and disaster planners to interrogate **45 years (1981–2026)** of NASA satellite observations and Meteomatics high-mountain weather data - separating genuine long-term cryosphere trends from seasonal cycles, autocorrelation, and short-term weather noise.
 
 ---
 

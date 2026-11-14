@@ -1,56 +1,93 @@
 <!doctype html>
-<html lang="en"><head>
-<script>window.__HATCHABLE__&&(window.__HATCHABLE__.primaryOrigin="https://himalaya-trend-lab.hatchable.site");</script>
-<script>window.__HATCHABLE__={"slug":"himalaya-trend-lab","api":"/api","primaryOrigin":"https://himalaya-trend-lab.hatchable.site"};</script><script src="/__hatchable/config.js?v=9"></script><script src="/__hatchable/badge.js?v=9&b=0" defer></script><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Himalaya Trend Lab — Pakistan Glacier Intelligence</title><meta name="description" content="Himalaya Trend Lab — Be a Data Detective for Pakistan's Glaciers."><link rel="stylesheet" href="/app.css?v=20261114v3"></head>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Himalaya Trend Lab | Cryosphere and Climate Trend Workbench for Pakistan's Glacier Basins</title>
+  <meta name="description" content="Statistical trend analysis and cryosphere workbench for Pakistan's glacier basins (1981 to 2026) using NASA MERRA-2, MODIS, GPM IMERG, GLDAS, OMI, and Meteomatics observations.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2358a6ff' stroke-width='2'%3E%3Cpath d='M3 20h18L14 6l-4 6-3-4-4 12z'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/app.css?v=20261114v4">
+</head>
 <body>
-<div id="cursor"></div><div class="noise"></div>
-<nav class="topbar">
-  <a class="brand" href="#home"><span class="brandmark">✦</span><span>HIMALAYA<br><b>TREND LAB</b></span></a>
-  <div class="navlinks">
-    <a href="#investigate">Investigate</a>
-    <a href="#cases">Demo Cases</a>
-    <a href="#notebook">Notebook</a>
-    <a href="#method">Methodology</a>
-    <a href="#ml">AI/ML Lab</a>
-    <a href="#shield">Shield</a>
-  </div>
-  <div class="navRightActions" style="display:flex;gap:8px;align-items:center">
-    <button class="navUtilBtn" id="btnAudioToggle" type="button" title="Toggle Ambient Mountain Wind & Orbital Telemetry Audio">🔇 Audio Off</button>
-    <button class="navUtilBtn tourBtn" id="btnAutoTour" type="button" title="Launch 60-Second Automated Judge Presentation Tour">▶ 60s Judge Tour</button>
-    <button class="navcta" onclick="location.hash='investigate'">Enter Lab <span>↗</span></button>
-  </div>
-</nav>
-<main id="view"></main>
-<div id="svgTooltip" class="svgTooltip" style="display:none"></div>
-<div id="autoTourBar" class="autoTourBar" style="display:none">
-  <div class="mono" id="autoTourStepTag" style="color:#f2c56b">JUDGE AUTO-TOUR // STEP 1 OF 6</div>
-  <strong id="autoTourCaption">Exploring Pakistan's 7,253 glaciers from orbit to ice...</strong>
-  <button class="navUtilBtn" id="btnStopTour" type="button">✕ Stop Tour</button>
-</div>
-<button id="aiCopilotBtn" class="aiCopilotBtn" type="button">✦ Ask Glacier Detective AI</button>
-<div id="aiCopilotDrawer" class="aiCopilotDrawer" style="display:none">
-  <div class="aiDrawerHead">
-    <div><div class="mono">EARTH SYSTEM COPILOT // LIVE TELEMETRY</div><strong>Glacier Detective AI Assistant</strong></div>
-    <button class="navUtilBtn" id="btnCloseAi" type="button">✕</button>
-  </div>
-  <div class="aiChips">
-    <button class="aiQuickChip" data-q="Why is the Karakoram stable while Hindu Kush melts?">Karakoram Anomaly vs. Hindu Kush?</button>
-    <button class="aiQuickChip" data-q="What caused the May 2022 Shisper GLOF & Hassanabad Bridge collapse?">May 2022 Shisper GLOF?</button>
-    <button class="aiQuickChip" data-q="Why use Hamed-Rao Mann-Kendall, Sen's slope, and BH-FDR instead of OLS?">Why Hamed–Rao & Sen's Slope?</button>
-    <button class="aiQuickChip" data-q="When is Peak Water at Tarbela Dam in the Indus Basin?">Indus Peak Water Year?</button>
-    <button class="aiQuickChip" data-q="What do the pre-trained Machine Learning models reveal?">ML Drivers & Changepoints?</button>
-  </div>
-  <div id="aiChatBody" class="aiChatBody">
-    <div class="aiBubble">
-      <div class="mono">DETECTIVE AI // READY</div>
-      <h4>Ask me anything about Pakistan's glaciers, statistical trend tests, or ML models!</h4>
-      <p>Click a quick question above or type your own below. Every answer cites live calculations from our 1981–2026 NASA & Meteomatics engine.</p>
+  <header class="topbar" role="banner">
+    <a class="brand" href="#home" aria-label="Himalaya Trend Lab Home">
+      <span class="brandmark" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m8 3 4 8 5-5 5 15H2L8 3z"></path>
+        </svg>
+      </span>
+      <span><b>Himalaya Trend Lab</b></span>
+    </a>
+    <nav class="navlinks" aria-label="Primary navigation">
+      <a href="#home">Overview</a>
+      <a href="#investigate">Investigate</a>
+      <a href="#cases">Demo Cases</a>
+      <a href="#notebook">Notebook</a>
+      <a href="#method">Methodology</a>
+      <a href="#ml">AI/ML Lab</a>
+      <a href="#shield">Shield</a>
+    </nav>
+    <div class="navRightActions">
+      <button class="navUtilBtn" id="btnAutoTour" type="button" title="Step through a guided tour of the workbench">Guided tour</button>
+      <button class="navUtilBtn" id="aiCopilotBtn" type="button" title="Open the statistical query assistant">Query assistant</button>
+      <a class="navcta" href="#investigate">Open workbench</a>
     </div>
+  </header>
+
+  <main id="view" role="main"></main>
+
+  <div id="svgTooltip" class="svgTooltip" role="status" aria-live="polite" style="display:none"></div>
+
+  <div id="autoTourBar" class="autoTourBar" role="region" aria-label="Guided tour controls" style="display:none">
+    <div>
+      <span class="mono" id="autoTourStepTag">Guided tour: Step 1 of 6</span>
+      <strong id="autoTourCaption">Overview of datasets, basins, and statistical methods.</strong>
+    </div>
+    <button class="navUtilBtn" id="btnStopTour" type="button">Stop tour</button>
   </div>
-  <form id="aiAskForm" class="aiAskForm">
-    <input id="aiQuestionInput" type="text" placeholder="Ask e.g. 'What is the trend in Hunza?' or 'Explain Shisper GLOF'..." required>
-    <button class="btn primary" type="submit" style="padding:10px 16px">Ask ↗</button>
-  </form>
-</div>
-<footer><span>NASA SPACE APPS CHALLENGE 2026</span><span>BE AN EARTH SYSTEM TREND DETECTIVE</span><span>Prepared by Ali Hassan</span></footer>
-<script src="/app.js?v=20261114v3"></script></body></html>
+
+  <aside id="aiCopilotDrawer" class="aiCopilotDrawer" aria-label="Statistical query assistant" style="display:none">
+    <div class="aiDrawerHead">
+      <div>
+        <span class="mono">Rule-based statistical lookup (1981 to 2026 cache)</span>
+        <strong>Cryosphere Query Assistant</strong>
+      </div>
+      <button class="navUtilBtn" id="btnCloseAi" type="button" aria-label="Close query assistant">Close</button>
+    </div>
+    <div class="aiChips">
+      <button class="aiQuickChip" type="button" data-q="Why is the Karakoram stable while Hindu Kush melts?">Karakoram vs. Hindu Kush</button>
+      <button class="aiQuickChip" type="button" data-q="What caused the May 2022 Shisper GLOF and Hassanabad Bridge collapse?">May 2022 Shisper GLOF</button>
+      <button class="aiQuickChip" type="button" data-q="Why use Hamed-Rao Mann-Kendall, Sen's slope, and BH-FDR instead of OLS?">Why Hamed-Rao and Sen slope?</button>
+      <button class="aiQuickChip" type="button" data-q="When is Peak Water at Tarbela Dam in the Indus Basin?">Indus Peak Water year</button>
+      <button class="aiQuickChip" type="button" data-q="What do the pre-trained Machine Learning models reveal?">ML drivers and changepoints</button>
+    </div>
+    <div id="aiChatBody" class="aiChatBody">
+      <div class="aiBubble">
+        <span class="mono">Assistant ready</span>
+        <h4>Query basin trends, test statistics, or dataset documentation</h4>
+        <p>Select a topic above or enter a question below. Responses cite pre-computed statistics from the 1981 to 2026 NASA and Meteomatics data pipeline.</p>
+      </div>
+    </div>
+    <form id="aiAskForm" class="aiAskForm">
+      <label for="aiQuestionInput" class="srOnly">Enter a question about basin trends or methodology</label>
+      <input id="aiQuestionInput" type="text" placeholder="Ask e.g. 'What is the temperature trend in Hunza?'" required>
+      <button class="btn primary" type="submit">Submit</button>
+    </form>
+  </aside>
+
+  <footer role="contentinfo">
+    <div>
+      <strong>Himalaya Trend Lab</strong> · Statistical and Cryosphere Workbench for Pakistan's Glacier Basins (1981 to 2026) · Prepared by Ali Hassan for the 2026 NASA Space Apps Challenge (Earth System Trend Detective).
+    </div>
+    <div class="footerLinks">
+      <a href="#method">Methodology &amp; Citations</a>
+      <a href="#method" onclick="setTimeout(()=>document.getElementById('provenanceSection')?.scrollIntoView(),100)">Data Licenses &amp; Provenance</a>
+      <a href="#method" onclick="setTimeout(()=>document.getElementById('privacyTermsSection')?.scrollIntoView(),100)">Privacy &amp; Terms</a>
+      <a href="https://github.com/alihassan-earth/himalaya-trend-lab" target="_blank" rel="noopener noreferrer">GitHub Repository</a>
+      <a href="mailto:ali.hassan@himalayatrendlab.org">Contact: ali.hassan@himalayatrendlab.org</a>
+    </div>
+  </footer>
+
+  <script src="/app.js?v=20261114v4"></script>
+</body>
+</html>
