@@ -9,7 +9,6 @@ Serves the Hatchable Frontend (`public/index.html`, `public/app.css`, `public/ap
 - Layer 4 (`ml/`): Pre-trained GPR, Random Forest Drivers, 36-Month Forecaster, K-Means/PCA, Isolation Forest
 - Layer 5B (`exports/`): CSV Export, 1-Page PDF Detective Report, Official Detective Certificate PDF
 """
-from datetime import datetime, timezone
 import os
 from pathlib import Path
 from typing import Dict, Any
@@ -164,18 +163,6 @@ def serve_hatchable_badge():
 # ============================================================================
 # REST API ENDPOINTS (Connecting Layers 1–4 + Exports into Hatchable UI)
 # ============================================================================
-
-@app.api_route("/health", methods=["GET", "HEAD"], include_in_schema=True)
-@app.api_route("/healthz", methods=["GET", "HEAD"], include_in_schema=False)
-@app.api_route("/api/health", methods=["GET", "HEAD"], include_in_schema=False)
-def health_check():
-    """Lightweight health-check endpoint for Render and uptime monitors."""
-    return {
-        "status": "ok",
-        "service": "himalaya-trend-lab",
-        "timestamp": datetime.now(timezone.utc).isoformat(),
-    }
-
 
 @app.get("/api/status")
 def api_status():
