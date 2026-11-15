@@ -62,7 +62,6 @@ from ui import (
 from exports import (
     export_series_to_csv_bytes,
     generate_one_page_pdf_report,
-    generate_detective_certificate_pdf,
 )
 
 PUBLIC_DIR = BASE_DIR / "public"
@@ -70,7 +69,7 @@ _ML_MEM_CACHE: Dict[str, Dict[str, Any]] = {}
 
 app = FastAPI(
     title="Himalaya Trend Lab - Pakistan Glacier Intelligence",
-    description="NASA Space Apps Challenge 2026: Be An Earth System Trend Detective | Prepared by Ali Hassan",
+    description="NASA Space Apps Challenge 2026: Be An Earth System Trend Detective | Prepared by Team GeoNova",
     version="1.0.0",
 )
 
@@ -774,17 +773,6 @@ def api_export_pdf(
         content=pdf_bytes,
         media_type="application/pdf",
         headers={"Content-Disposition": f'attachment; filename="{filename}"'},
-    )
-
-
-@app.get("/api/export/certificate")
-def api_export_certificate(name: str = "Ali Hassan - Earth System Detective"):
-    """Generate and download the Official Earth System Trend Detective Certificate PDF."""
-    pdf_bytes = generate_detective_certificate_pdf(recipient_name=name)
-    return Response(
-        content=pdf_bytes,
-        media_type="application/pdf",
-        headers={"Content-Disposition": 'attachment; filename="Himalaya_Trend_Lab_Detective_Certificate.pdf"'},
     )
 
 

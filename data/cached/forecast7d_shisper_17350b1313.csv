@@ -1,0 +1,8 @@
+date,glacier_id,glacier_name,range,snout_temp_c,precip_mm,snowmelt_mm,freezing_level_m,ela_m,glof_trigger_score,alert_level,source
+2026-11-15,shisper,Shisper Glacier & Hassanabad Lake,Karakoram,-1.22,2.6,6.3,2332.0,4850,54.3,MODERATE WATCH,Meteomatics Calibrated Mountain Forecast
+2026-11-16,shisper,Shisper Glacier & Hassanabad Lake,Karakoram,-2.36,6.5,2.9,2157.0,4850,51.4,MODERATE WATCH,Meteomatics Calibrated Mountain Forecast
+2026-11-17,shisper,Shisper Glacier & Hassanabad Lake,Karakoram,-3.0,1.6,0.6,2058.0,4850,49.5,MODERATE WATCH,Meteomatics Calibrated Mountain Forecast
+2026-11-18,shisper,Shisper Glacier & Hassanabad Lake,Karakoram,-1.68,8.1,6.3,2262.0,4850,54.3,MODERATE WATCH,Meteomatics Calibrated Mountain Forecast
+2026-11-19,shisper,Shisper Glacier & Hassanabad Lake,Karakoram,-1.03,10.3,9.8,2362.0,4850,57.3,MODERATE WATCH,Meteomatics Calibrated Mountain Forecast
+2026-11-20,shisper,Shisper Glacier & Hassanabad Lake,Karakoram,-0.98,13.5,11.1,2369.0,4850,58.4,MODERATE WATCH,Meteomatics Calibrated Mountain Forecast
+2026-11-21,shisper,Shisper Glacier & Hassanabad Lake,Karakoram,-0.61,8.3,10.8,2426.0,4850,58.1,MODERATE WATCH,Meteomatics Calibrated Mountain Forecast

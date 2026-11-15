@@ -1,0 +1,8 @@
+date,glacier_id,glacier_name,range,snout_temp_c,precip_mm,snowmelt_mm,freezing_level_m,ela_m,glof_trigger_score,alert_level,source
+2026-11-15,darkot,Darkot & Gamubar Glaciers (Yasin / Ghizer),Hindu Kush-Karakoram Transition,-7.2,5.3,1.9,2072.0,4620,43.4,NORMAL GREEN,Meteomatics Calibrated Mountain Forecast
+2026-11-16,darkot,Darkot & Gamubar Glaciers (Yasin / Ghizer),Hindu Kush-Karakoram Transition,-6.48,11.3,3.9,2183.0,4620,45.1,MODERATE WATCH,Meteomatics Calibrated Mountain Forecast
+2026-11-17,darkot,Darkot & Gamubar Glaciers (Yasin / Ghizer),Hindu Kush-Karakoram Transition,-4.9,0.0,0.0,2426.0,4620,41.8,NORMAL GREEN,Meteomatics Calibrated Mountain Forecast
+2026-11-18,darkot,Darkot & Gamubar Glaciers (Yasin / Ghizer),Hindu Kush-Karakoram Transition,-4.08,2.1,0.7,2552.0,4620,42.4,NORMAL GREEN,Meteomatics Calibrated Mountain Forecast
+2026-11-19,darkot,Darkot & Gamubar Glaciers (Yasin / Ghizer),Hindu Kush-Karakoram Transition,-4.74,0.0,0.0,2451.0,4620,41.8,NORMAL GREEN,Meteomatics Calibrated Mountain Forecast
+2026-11-20,darkot,Darkot & Gamubar Glaciers (Yasin / Ghizer),Hindu Kush-Karakoram Transition,-4.05,0.8,0.3,2557.0,4620,42.1,NORMAL GREEN,Meteomatics Calibrated Mountain Forecast
+2026-11-21,darkot,Darkot & Gamubar Glaciers (Yasin / Ghizer),Hindu Kush-Karakoram Transition,-3.48,0.7,0.3,2645.0,4620,42.1,NORMAL GREEN,Meteomatics Calibrated Mountain Forecast

@@ -1,0 +1,8 @@
+date,glacier_id,glacier_name,range,snout_temp_c,precip_mm,snowmelt_mm,freezing_level_m,ela_m,glof_trigger_score,alert_level,source
+2026-11-15,batura,Batura Glacier (Upper Hunza / Gojal),Karakoram,-1.95,0.0,2.3,2260.0,4820,37.2,NORMAL GREEN,Meteomatics Calibrated Mountain Forecast
+2026-11-16,batura,Batura Glacier (Upper Hunza / Gojal),Karakoram,0.79,10.7,17.6,2682.0,4820,50.2,MODERATE WATCH,Meteomatics Calibrated Mountain Forecast
+2026-11-17,batura,Batura Glacier (Upper Hunza / Gojal),Karakoram,1.54,1.4,17.4,2797.0,4820,50.0,MODERATE WATCH,Meteomatics Calibrated Mountain Forecast
+2026-11-18,batura,Batura Glacier (Upper Hunza / Gojal),Karakoram,1.8,11.8,22.2,2837.0,4820,68.1,HIGH AMBER,Meteomatics Calibrated Mountain Forecast
+2026-11-19,batura,Batura Glacier (Upper Hunza / Gojal),Karakoram,1.94,0.0,18.7,2858.0,4820,51.1,MODERATE WATCH,Meteomatics Calibrated Mountain Forecast
+2026-11-20,batura,Batura Glacier (Upper Hunza / Gojal),Karakoram,1.4,0.0,16.4,2775.0,4820,49.1,MODERATE WATCH,Meteomatics Calibrated Mountain Forecast
+2026-11-21,batura,Batura Glacier (Upper Hunza / Gojal),Karakoram,1.43,1.2,17.0,2780.0,4820,49.7,MODERATE WATCH,Meteomatics Calibrated Mountain Forecast

@@ -1,0 +1,8 @@
+date,glacier_id,glacier_name,range,snout_temp_c,precip_mm,snowmelt_mm,freezing_level_m,ela_m,glof_trigger_score,alert_level,source
+2026-11-15,ghulkin,Ghulkin Glacier (Upper Hunza),Karakoram,0.91,3.6,15.6,2650.0,4720,52.9,MODERATE WATCH,Meteomatics Calibrated Mountain Forecast
+2026-11-16,ghulkin,Ghulkin Glacier (Upper Hunza),Karakoram,-1.89,0.0,2.6,2219.0,4720,41.8,NORMAL GREEN,Meteomatics Calibrated Mountain Forecast
+2026-11-17,ghulkin,Ghulkin Glacier (Upper Hunza),Karakoram,-2.15,7.6,4.1,2179.0,4720,43.1,NORMAL GREEN,Meteomatics Calibrated Mountain Forecast
+2026-11-18,ghulkin,Ghulkin Glacier (Upper Hunza),Karakoram,-1.84,5.4,4.7,2227.0,4720,43.6,NORMAL GREEN,Meteomatics Calibrated Mountain Forecast
+2026-11-19,ghulkin,Ghulkin Glacier (Upper Hunza),Karakoram,-0.55,4.4,9.8,2425.0,4720,47.9,MODERATE WATCH,Meteomatics Calibrated Mountain Forecast
+2026-11-20,ghulkin,Ghulkin Glacier (Upper Hunza),Karakoram,0.6,1.3,13.5,2602.0,4720,51.1,MODERATE WATCH,Meteomatics Calibrated Mountain Forecast
+2026-11-21,ghulkin,Ghulkin Glacier (Upper Hunza),Karakoram,1.57,0.0,17.1,2752.0,4720,54.1,MODERATE WATCH,Meteomatics Calibrated Mountain Forecast

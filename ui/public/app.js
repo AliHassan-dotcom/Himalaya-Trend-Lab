@@ -49,7 +49,7 @@ const cinematicFX = () =>
 
 const pageHead = (eyebrow, title, desc) =>
   cinematicFX() +
-  `<div class="pageAtmos"><div class="atmoGrid"></div><div class="atmoMountain"></div><div class="atmoGlow"></div><div class="atmoSnow"></div></div><div class="pageHero"><a class="backLink" href="#home">← RETURN TO TERRAIN</a><div class="eyebrow">${eyebrow}</div><h1>${title}</h1><p>${desc}</p><div class="heroRule"><i></i><span>NASA EARTH OBSERVATION // METEOMATICS // PAKISTAN CRYOSPHERE</span><i></i></div></div>`;
+  `<div class="pageAtmos"><video class="pageBgVideo" autoplay muted loop playsinline preload="metadata" poster="/assets/karakoram-k2.jpg" aria-hidden="true"><source src="/assets/glacier-loop.mp4" type="video/mp4"></video><div class="atmoGrid"></div><div class="atmoGlow"></div></div><div class="pageHero"><a class="backLink" href="#home">← RETURN TO TERRAIN</a><div class="eyebrow">${eyebrow}</div><h1>${title}</h1><p>${desc}</p><div class="heroRule"><i></i><span>NASA EARTH OBSERVATION // METEOMATICS // PAKISTAN CRYOSPHERE</span><i></i></div></div>`;
 
 const glass = (n, t, b, extra = "") =>
   `<div class="glass" ${extra}><div class="num">${n}</div><h3>${t}</h3><p>${b}</p><div class="glow"></div></div>`;
@@ -80,12 +80,12 @@ function home() {
       <div class="heroGlow"></div>
       <div class="heroCopy">
         <div class="eyebrow">NASA SPACE APPS 2026 // BE AN EARTH SYSTEM TREND DETECTIVE</div>
-        <h1>HIMALAYA<br><em>TREND LAB</em></h1>
+        <h1 class="heroTitleLockup"><span class="titleTop">HIMALAYA</span><span class="titleBottom"><em class="titleTrend">TREND</em> <em class="titleLab">LAB</em></span><span class="titleFlare" aria-hidden="true"></span></h1>
         <p class="heroDesc">Be a Data Detective for Pakistan’s 7,253 glaciers. Follow the signal from orbit to ice — separating real climate trends from mountain-weather noise across the Karakoram, Hindu Kush, and Western Himalaya.</p>
         <div class="actions">
           <a class="btn primary" href="#investigate">Start Investigation <span>↗</span></a>
           <a class="btn ghost" href="#cases">Explore 3 Demo Cases</a>
-          <a class="btn ghost" href="#notebook">Judge’s 60s Tour & Missions</a>
+          <a class="btn ghost" href="#notebook">Detective Missions</a>
           <a class="btn ghost" href="#shield">HimalayaShield GLOF Radar</a>
         </div>
       </div>
@@ -397,42 +397,16 @@ function cases() {
 function notebook() {
   return (
     pageHead(
-      "EARTH SYSTEM CASEBOOK // GAMIFIED MISSIONS & JUDGE'S TOUR",
+      "EARTH SYSTEM CASEBOOK // INTERACTIVE DETECTIVE MISSIONS",
       "Detective Notebook",
-      "Solve the three interactive Earth System Detective Missions below by inspecting the statistical clues, or step through the Judge’s 60-Second Executive Tour."
+      "Solve the three interactive Earth System Detective Missions below by inspecting the statistical clues and selecting the supported scientific conclusion."
     ) +
     `<div class="pageBody">
-      <div class="dashShell" style="margin-bottom:18px">
-        <div class="dashTop">
-          <div>
-            <div class="mono">JUDGE'S 60-SECOND EXECUTIVE TOUR // 5 PILLARS OF HIMALAYA TREND LAB</div>
-            <div class="dashTitle" id="tourStepTitle">Step 1 of 5: The Core Scientific Question</div>
-          </div>
-          <div class="tabs" id="tourTabs">
-            <button class="tab active" data-step="0">01 · Question</button>
-            <button class="tab" data-step="1">02 · Statistics</button>
-            <button class="tab" data-step="2">03 · Karakoram Anomaly</button>
-            <button class="tab" data-step="3">04 · Explainable ML</button>
-            <button class="tab" data-step="4">05 · HimalayaShield</button>
-          </div>
-        </div>
-        <div class="dashBody">
-          <div class="verdict" style="margin:0">
-            <div class="mono" id="tourMetricBadge">KEY METRIC // 9 BASINS · 15 GLACIERS · 10 VARIABLES (1981–2026)</div>
-            <strong id="tourHead">Separating Real Cryosphere Trends from Mountain Weather Noise</strong>
-            <p id="tourSummary">Himalaya Trend Lab empowers scientists, students, and disaster planners to interrogate 45 years of NASA satellite and Meteomatics weather data across Pakistan's 7,253 glaciers.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="mono" style="margin-bottom:8px">MISSION COMPLETION PROGRESS (<span id="missionCountLabel">0 / 3 SOLVED</span>)</div>
-      <div class="missionProgress"><i id="missionBar"></i></div>
-
       <div class="featureGrid" id="missionsGrid">
         <div class="glass" data-mission="0">
           <div class="num" id="mStatus0">MISSION 01 · SHISPER GLACIER (HUNZA)</div>
           <h3>The May 2022 Hassanabad Bridge Collapse</h3>
-          <p>Clue: Hunza 2m Air Temperature shows Sen’s slope +0.29°C/decade (Hamed–Rao p &lt; 0.01) and a +200 m upward shift of the 0°C freezing isotherm. What triggered the May 7, 2022 outburst flood?</p>
+          <p>Clue: Hunza 2m Air Temperature shows Sen's slope +0.29°C/decade (Hamed-Rao p &lt; 0.01) and a +200 m upward shift of the 0°C freezing isotherm. What triggered the May 7, 2022 outburst flood?</p>
           <div class="quizOpts">
             <button class="quizBtn" data-correct="true">A) Compound spring heatwave + rapid ice-dammed lake melt above the rising 0°C isotherm</button>
             <button class="quizBtn" data-correct="false">B) A winter earthquake with cooling summer temperatures</button>
@@ -443,10 +417,10 @@ function notebook() {
         <div class="glass" data-mission="1">
           <div class="num" id="mStatus1">MISSION 02 · KARAKORAM VS. HINDU KUSH</div>
           <h3>Unmasking the Karakoram Anomaly</h3>
-          <p>Clue: Hindu Kush snow cover declines at −1.42%/decade (p = 0.0001), whereas central Karakoram snow cover shows −0.12%/decade (p = 0.084). What is the scientific verdict?</p>
+          <p>Clue: Hindu Kush snow cover declines at -1.42%/decade (p = 0.0001), whereas central Karakoram snow cover shows -0.12%/decade (p = 0.084). What is the scientific verdict?</p>
           <div class="quizOpts">
             <button class="quizBtn" data-correct="false">A) Both mountain ranges are losing snow at the exact same rate</button>
-            <button class="quizBtn" data-correct="true">B) Regional divergence: westerly winter snowfall & high-altitude hypsometry buffer the Karakoram while Hindu Kush declines significantly</button>
+            <button class="quizBtn" data-correct="true">B) Regional divergence: westerly winter snowfall &amp; high-altitude hypsometry buffer the Karakoram while Hindu Kush declines significantly</button>
             <button class="quizBtn" data-correct="false">C) Satellite sensors cannot measure snow above 3,000 meters</button>
           </div>
         </div>
@@ -454,28 +428,12 @@ function notebook() {
         <div class="glass" data-mission="2">
           <div class="num" id="mStatus2">MISSION 03 · UPPER INDUS BASIN</div>
           <h3>The Monsoon Rainfall Illusion</h3>
-          <p>Clue: A 10-year slice of precipitation looks like a steep trend, but across the 45-year record Hamed–Rao p = 0.34 (α = 0.05). How should a Data Detective report this?</p>
+          <p>Clue: A 10-year slice of precipitation looks like a steep trend, but across the 45-year record Hamed-Rao p = 0.34 (α = 0.05). How should a Data Detective report this?</p>
           <div class="quizOpts">
             <button class="quizBtn" data-correct="false">A) Delete noisy years until p &lt; 0.05</button>
             <button class="quizBtn" data-correct="true">B) Report honestly: high interannual variability masks the long-term slope (Not Statistically Significant Yet)</button>
             <button class="quizBtn" data-correct="false">C) Use raw monthly series without removing seasonality</button>
           </div>
-        </div>
-      </div>
-
-      <div class="dashShell" style="margin-top:18px">
-        <div class="dashTop">
-          <div>
-            <div class="mono">OFFICIAL CREDENTIAL // PDF EXPORT</div>
-            <div class="dashTitle">Official Earth System Trend Detective Certificate</div>
-          </div>
-        </div>
-        <div class="dashBody" style="display:flex;gap:14px;align-items:end;flex-wrap:wrap">
-          <div class="control" style="flex:1;min-width:260px">
-            <label>Detective Recipient Name (Printed on Official PDF Certificate)</label>
-            <input id="certNameInput" type="text" value="Ali Hassan — Lead Earth System Detective">
-          </div>
-          <button class="btn primary cert" type="button" style="height:48px">Download Official Certificate PDF ↗</button>
         </div>
       </div>
     </div>`
@@ -791,11 +749,137 @@ function initCinematic() {
     x.fillStyle = color;
     x.fill();
   }
+  // Pre-seed twinkling multi-magnitude stars & ridge spindrift particles
+  const stars = Array.from({ length: 140 }, (_, i) => ({
+    x: ((i * 137.5) % 1000) / 1000,
+    y: ((i * 73.1) % 580) / 1000,
+    r: i % 11 === 0 ? 1.8 : i % 4 === 0 ? 1.2 : 0.75,
+    phase: i * 0.9,
+    speed: 0.018 + (i % 5) * 0.007,
+  }));
+
+  const spindrift = Array.from({ length: 48 }, (_, i) => ({
+    peakIdx: i % 3,
+    life: Math.random(),
+    speed: 0.006 + Math.random() * 0.008,
+    len: 18 + Math.random() * 34,
+    dy: (Math.random() - 0.5) * 14,
+  }));
+
+  const glacierTargets = [
+    { name: "SHISPER · 36.4°N", rx: 0.43, ry: 0.67 },
+    { name: "BALTORO / K2 · 35.7°N", rx: 0.61, ry: 0.61 },
+    { name: "SIACHEN · 35.4°N", rx: 0.75, ry: 0.65 },
+  ];
+
+  function fbmRidge(u, phase) {
+    // Multi-octave craggy Himalayan ridgeline (sharp summits + natural saddles)
+    const p1 = 1 - Math.abs(Math.sin(u * 6.2 + phase));
+    const p2 = 1 - Math.abs(Math.sin(u * 13.7 + phase * 1.9));
+    const p3 = Math.sin(u * 29.3 + phase * 3.1) * 0.5 + 0.5;
+    const p4 = Math.sin(u * 57.0 + phase * 5.2) * 0.5 + 0.5;
+    return p1 * 0.54 + p2 * 0.27 + p3 * 0.13 + p4 * 0.06;
+  }
+
+  function drawMountainRidge(base, amp, topCol, botCol, depth, phase, rimColor, showMesh) {
+    const steps = 68;
+    let pts = [];
+    let minY = h;
+    for (let i = 0; i <= steps; i++) {
+      const u = i / steps;
+      const xx = u * w;
+      const hVal = fbmRidge(u, phase);
+      const yy = base - amp * (0.22 + 0.78 * hVal);
+      const q = project(xx, yy, depth);
+      if (q.y < minY) minY = q.y;
+      pts.push([q.x, q.y, xx, yy]);
+    }
+    x.beginPath();
+    x.moveTo(0, h);
+    pts.forEach((p) => x.lineTo(p[0], p[1]));
+    x.lineTo(w, h);
+    x.closePath();
+
+    const grad = x.createLinearGradient(0, minY, 0, h);
+    grad.addColorStop(0, topCol);
+    grad.addColorStop(0.55, botCol);
+    grad.addColorStop(1, "rgba(3, 12, 18, 0.94)");
+    x.fillStyle = grad;
+    x.fill();
+
+    // Shaded 3D ridge spurs & snow couloirs descending from major peaks
+    x.save();
+    for (let i = 4; i < pts.length - 4; i += 5) {
+      if (pts[i][1] < pts[i - 2][1] && pts[i][1] < pts[i + 2][1]) {
+        const px = pts[i][0], py = pts[i][1];
+        const spurX = px + (i % 2 === 0 ? 34 : -28);
+        const spurY = py + 115;
+        x.beginPath();
+        x.moveTo(px, py);
+        x.lineTo(spurX, spurY);
+        x.lineTo(px + 6, spurY);
+        x.closePath();
+        x.fillStyle = "rgba(180, 236, 255, 0.075)";
+        x.fill();
+      }
+    }
+    x.restore();
+
+    // Subtle LIDAR wireframe elevation mesh on the right-hand range (like reference)
+    if (showMesh) {
+      x.save();
+      x.strokeStyle = "rgba(109, 231, 255, 0.22)";
+      x.lineWidth = 0.85;
+      for (let i = Math.floor(steps * 0.36); i < pts.length - 3; i += 3) {
+        const pA = pts[i];
+        const pB = pts[i + 3];
+        const midX = (pA[0] + pB[0]) * 0.5 + 10;
+        const midY = Math.max(pA[1], pB[1]) + 46;
+        x.beginPath();
+        x.moveTo(pA[0], pA[1]);
+        x.lineTo(midX, midY);
+        x.lineTo(pB[0], pB[1]);
+        x.stroke();
+      }
+      x.restore();
+    }
+
+    // Crisp rim highlight along the snow crest
+    if (rimColor) {
+      x.save();
+      x.beginPath();
+      pts.forEach((p, idx) => (idx === 0 ? x.moveTo(p[0], p[1]) : x.lineTo(p[0], p[1])));
+      x.strokeStyle = rimColor;
+      x.lineWidth = 1.3;
+      x.stroke();
+      x.restore();
+    }
+    return pts;
+  }
+
   function drawTerrain() {
     let par = scroll * 0.12;
-    mountain(h * 0.68 - par, h * 0.26, "rgba(18,54,68,.42)", 820, 0.2);
-    mountain(h * 0.72 - par, h * 0.28, "rgba(27,75,88,.62)", 570, 1.2);
-    mountain(h * 0.79 - par, h * 0.31, "rgba(9,37,48,.94)", 330, 2.4);
+    const alpenglowShift = Math.max(0, Math.min(1, 0.5 + yaw * 0.8));
+    const rimFar = `rgba(145, 224, 248, ${(0.18 + alpenglowShift * 0.1).toFixed(2)})`;
+    const rimMid = `rgba(210, 242, 255, ${(0.28 + alpenglowShift * 0.12).toFixed(2)})`;
+    const rimFront = alpenglowShift > 0.62 ? "rgba(255, 218, 178, 0.28)" : "rgba(175, 242, 255, 0.32)";
+
+    drawMountainRidge(h * 0.67 - par, h * 0.28, "rgba(38, 92, 114, 0.45)", "rgba(12, 38, 50, 0.62)", 820, 0.35, rimFar, false);
+    const midPts = drawMountainRidge(h * 0.72 - par, h * 0.30, "rgba(52, 118, 140, 0.62)", "rgba(14, 46, 60, 0.78)", 570, 1.45, rimMid, true);
+    const frontPts = drawMountainRidge(h * 0.80 - par, h * 0.32, "rgba(24, 72, 92, 0.88)", "rgba(6, 26, 36, 0.96)", 330, 2.75, rimFront, false);
+
+    // Moving cloud shadow drifting across the glacier valley
+    x.save();
+    const shadowX = ((t * 0.55) % (w + 460)) - 230;
+    const sg = x.createLinearGradient(shadowX - 180, 0, shadowX + 180, 0);
+    sg.addColorStop(0, "rgba(2, 8, 14, 0)");
+    sg.addColorStop(0.5, "rgba(2, 8, 14, 0.26)");
+    sg.addColorStop(1, "rgba(2, 8, 14, 0)");
+    x.fillStyle = sg;
+    x.fillRect(shadowX - 180, h * 0.52 - par, 360, h * 0.48);
+    x.restore();
+
+    // Glacier basin highlight polygon
     x.save();
     x.translate(w * 0.52, h * 0.75 - par * 0.8);
     x.rotate(-0.12);
@@ -812,6 +896,7 @@ function initCinematic() {
     x.shadowColor = "#43dcff";
     x.fill();
     x.restore();
+
     x.strokeStyle = "rgba(173,246,255,.38)";
     x.lineWidth = 1;
     for (let i = 0; i < 8; i++) {
@@ -820,22 +905,68 @@ function initCinematic() {
       x.lineTo(w * 0.52 + i * 24, h * 0.58 - par);
       x.stroke();
     }
-  }
-  function drawStars() {
-    x.fillStyle = "#e6fbff";
-    for (let i = 0; i < 110; i++) {
-      let xx = (i * 83 + t * 0.006) % w,
-        yy = (i * 47) % (h * 0.58);
-      x.globalAlpha = 0.15 + (i % 5) * 0.05;
-      x.fillRect(xx, yy, 1, 1);
+
+    // 1. Ridge Spindrift (blowing snow plumes off high peaks)
+    const anchors = [midPts[22], midPts[45], frontPts[34]].filter(Boolean);
+    if (anchors.length) {
+      x.save();
+      const gust = 1 + 0.55 * Math.sin(t * 0.011);
+      spindrift.forEach((sp) => {
+        sp.life += sp.speed * gust;
+        if (sp.life > 1) {
+          sp.life = 0;
+          sp.dy = (Math.random() - 0.5) * 12;
+        }
+        const anchor = anchors[sp.peakIdx % anchors.length];
+        const px = anchor[0] + sp.life * (110 * gust);
+        const py = anchor[1] + sp.dy * sp.life - sp.life * 8;
+        const alpha = Math.sin(sp.life * Math.PI) * 0.42;
+        const grad = x.createLinearGradient(px, py, px + sp.len, py - 3);
+        grad.addColorStop(0, `rgba(225, 250, 255, ${alpha.toFixed(3)})`);
+        grad.addColorStop(1, "rgba(225, 250, 255, 0)");
+        x.strokeStyle = grad;
+        x.lineWidth = 1.6;
+        x.beginPath();
+        x.moveTo(px, py);
+        x.lineTo(px + sp.len, py - 3);
+        x.stroke();
+      });
+      x.restore();
     }
+  }
+
+  function drawStars() {
+    // 5. Faint upper-atmosphere cyan airglow above the horizon
+    x.save();
+    const ag = x.createLinearGradient(0, h * 0.25, 0, h * 0.62);
+    ag.addColorStop(0, "rgba(70, 210, 235, 0)");
+    ag.addColorStop(0.5, "rgba(70, 210, 235, 0.055)");
+    ag.addColorStop(1, "rgba(70, 210, 235, 0)");
+    x.fillStyle = ag;
+    x.fillRect(0, h * 0.25, w, h * 0.37);
+
+    // Multi-magnitude twinkling stars
+    x.fillStyle = "#e6fbff";
+    stars.forEach((st) => {
+      const xx = ((st.x * w + t * 0.008) % w + w) % w;
+      const yy = st.y * h;
+      const twinkle = 0.2 + 0.55 * (0.5 + 0.5 * Math.sin(t * st.speed + st.phase));
+      x.globalAlpha = twinkle;
+      x.beginPath();
+      x.arc(xx, yy, st.r, 0, Math.PI * 2);
+      x.fill();
+    });
+    x.restore();
     x.globalAlpha = 1;
   }
+
   function drawFlakes() {
+    // 4. 3-Depth wind-driven snowfall with synchronized gusts
+    const windGust = 0.55 + 0.65 * Math.sin(t * 0.009);
     flakes.forEach((f) => {
       let L = layers[f.z];
       f.y += f.v * (1 + scroll * 0.0012);
-      f.x += Math.sin(t * 0.001 + f.sway) * 0.35;
+      f.x += windGust * (0.35 + f.z * 0.38) + Math.sin(t * 0.001 + f.sway) * 0.28;
       if (f.y > h + 10) f.y = -10;
       if (f.x > w + 10) f.x = -10;
       if (f.x < -10) f.x = w + 10;
@@ -851,6 +982,54 @@ function initCinematic() {
       x.fill();
     });
   }
+
+  function drawSatelliteSwath() {
+    // 2. Satellite Nadir Swath Cone & Glacier Target Pings
+    const cycle = (t * 0.0016) % 1;
+    const satX = w * (0.94 - cycle * 0.72);
+    const satY = h * (0.14 + cycle * 0.09);
+    const groundX = satX - w * 0.06;
+    const groundY = h * 0.74;
+
+    x.save();
+    const coneGrad = x.createLinearGradient(satX, satY, groundX, groundY);
+    coneGrad.addColorStop(0, "rgba(109, 231, 255, 0.16)");
+    coneGrad.addColorStop(1, "rgba(109, 231, 255, 0.01)");
+    x.fillStyle = coneGrad;
+    x.beginPath();
+    x.moveTo(satX, satY);
+    x.lineTo(groundX - 55, groundY);
+    x.lineTo(groundX + 55, groundY);
+    x.closePath();
+    x.fill();
+
+    // Ping glacier markers when swath sweeps near them
+    glacierTargets.forEach((gt) => {
+      const gx = gt.rx * w;
+      const gy = gt.ry * h - scroll * 0.08;
+      const dist = Math.abs(gx - groundX);
+      if (dist < 110) {
+        const strength = 1 - dist / 110;
+        const pulseR = 6 + ((t * 0.35) % 18);
+        x.strokeStyle = `rgba(125, 244, 255, ${(strength * 0.65).toFixed(2)})`;
+        x.lineWidth = 1.2;
+        x.beginPath();
+        x.arc(gx, gy, pulseR, 0, Math.PI * 2);
+        x.stroke();
+
+        x.fillStyle = `rgba(214, 250, 255, ${(strength * 0.92).toFixed(2)})`;
+        x.beginPath();
+        x.arc(gx, gy, 3, 0, Math.PI * 2);
+        x.fill();
+
+        x.font = '600 10px "DM Mono", monospace';
+        x.fillStyle = `rgba(155, 240, 255, ${(strength * 0.88).toFixed(2)})`;
+        x.fillText(gt.name, gx + 10, gy + 3);
+      }
+    });
+    x.restore();
+  }
+
   function drawLightning() {
     if (Math.sin(t * 0.017) > 0.992) {
       x.save();
@@ -872,6 +1051,7 @@ function initCinematic() {
       x.restore();
     }
   }
+
   function drawScan() {
     let yy = h * 0.55 + Math.sin(t * 0.0012) * 22;
     x.save();
@@ -883,8 +1063,28 @@ function initCinematic() {
     x.shadowBlur = 18;
     x.shadowColor = "#5deaff";
     x.strokeRect(-w * 0.46, 0, w * 0.92, 1);
+
+    // 3. Topographic Elevation Contours revealed along the scan band
+    x.shadowBlur = 0;
+    x.strokeStyle = "rgba(125, 238, 255, 0.18)";
+    x.lineWidth = 1;
+    const labels = ["3,500 m", "5,180 m ELA", "8,611 m K2"];
+    for (let cIdx = 0; cIdx < 3; cIdx++) {
+      const cy = 18 + cIdx * 18;
+      x.beginPath();
+      for (let sx = -w * 0.38; sx <= w * 0.38; sx += 24) {
+        const wy = cy + Math.sin(sx * 0.012 + cIdx * 1.4) * 5;
+        if (sx === -w * 0.38) x.moveTo(sx, wy);
+        else x.lineTo(sx, wy);
+      }
+      x.stroke();
+      x.fillStyle = "rgba(165, 242, 255, 0.42)";
+      x.font = '10px "DM Mono", monospace';
+      x.fillText(labels[cIdx], w * 0.31, cy - 3);
+    }
     x.restore();
   }
+
   function draw() {
     if (!document.getElementById("scene3d")) {
       sceneReady = false;
@@ -901,6 +1101,7 @@ function initCinematic() {
     x.fillRect(0, 0, w, h);
     drawStars();
     drawTerrain();
+    drawSatelliteSwath();
     drawScan();
     drawFlakes();
     drawLightning();
@@ -1315,66 +1516,7 @@ function enhancePage(n) {
   }
 
   if (n === "notebook") {
-    const tourSteps = [
-      {
-        title: "Step 1 of 5: The Core Scientific Question",
-        badge: "KEY METRIC // 9 BASINS · 15 GLACIERS · 10 VARIABLES (1981–2026)",
-        head: "Separating Real Cryosphere Trends from Mountain Weather Noise",
-        summary:
-          "Himalaya Trend Lab empowers scientists, students, and disaster planners to interrogate 45 years of NASA satellite (MODIS, MERRA-2, GPM IMERG, GLDAS, OMI) and Meteomatics weather data across Pakistan's 7,253 glaciers.",
-      },
-      {
-        title: "Step 2 of 5: Statistical Rigor & Autocorrelation Correction",
-        badge: "KEY METRIC // SEN'S SLOPE + HAMED–RAO MANN–KENDALL + BH-FDR",
-        head: "Why Ordinary Linear Regression Fails on Glacier Time-Series",
-        summary:
-          "Mountain climate records contain strong seasonal cycles and month-to-month persistence (lag-1 autocorrelation). We remove the 12-month climatology, compute non-parametric Theil–Sen slopes, and adjust Mann–Kendall variance via Hamed–Rao (1998).",
-      },
-      {
-        title: "Step 3 of 5: Proving the Karakoram Anomaly",
-        badge: "KEY METRIC // KARAKORAM (-0.12%/dec) VS. HINDU KUSH (-1.42%/dec)",
-        head: "Side-by-Side Regional Divergence Across High Asia",
-        summary:
-          "Our spatial FDR stippling and RGI v6.0 glacier masking prove that westerly winter snowfall buffers high-altitude Karakoram ice while lower-elevation Hindu Kush basins suffer rapid, statistically significant snow loss.",
-      },
-      {
-        title: "Step 4 of 5: Explainable AI / Machine Learning Suite",
-        badge: "KEY METRIC // GPR CHANGEPOINTS + RANDOM FOREST + 36M FORECAST (R² = 0.99)",
-        head: "Non-Linear Regime Shifts & Multi-Driver Attribution",
-        summary:
-          "Pre-trained Gaussian Process Regression detects structural regime shifts around 2010–2016, Random Forests rank temperature vs. black-carbon aerosol drivers, and our hybrid forecaster projects 2026–2029 trajectories.",
-      },
-      {
-        title: "Step 5 of 5: HimalayaShield GLOF Radar & Indus Water Tower",
-        badge: "KEY METRIC // 15 GLACIER TERMINI · 64.5 MAF · 15,827 MW HYDROPOWER",
-        head: "From Orbital Equations to Downstream Human Protection",
-        summary:
-          "Tracks 7-day Meteomatics GLOF trigger scores at Shisper, Passu, and Batura glaciers while simulating the Tarbela Dam 'Peak Water' tipping point for 240 million people in the Indus Basin.",
-      },
-    ];
-
-    body.querySelectorAll("#tourTabs .tab").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        body.querySelectorAll("#tourTabs .tab").forEach((b) => b.classList.remove("active"));
-        btn.classList.add("active");
-        const s = tourSteps[+btn.dataset.step];
-        body.querySelector("#tourStepTitle").textContent = s.title;
-        body.querySelector("#tourMetricBadge").textContent = s.badge;
-        body.querySelector("#tourHead").textContent = s.head;
-        body.querySelector("#tourSummary").textContent = s.summary;
-      });
-    });
-
     const cards = body.querySelectorAll("#missionsGrid .glass");
-    const bar = body.querySelector("#missionBar");
-    const countLbl = body.querySelector("#missionCountLabel");
-
-    const updateProgress = () => {
-      const done = [...cards].filter((c) => c.classList.contains("missionDone")).length;
-      if (bar) bar.style.width = (done / cards.length) * 100 + "%";
-      if (countLbl) countLbl.textContent = `${done} / ${cards.length} SOLVED`;
-    };
-
     cards.forEach((card, idx) => {
       card.querySelectorAll(".quizBtn").forEach((btn) => {
         btn.addEventListener("click", () => {
@@ -1388,7 +1530,6 @@ function enhancePage(n) {
           } else {
             btn.classList.add("wrong");
           }
-          updateProgress();
         });
       });
     });
@@ -1612,15 +1753,6 @@ document.addEventListener(
   },
   { passive: true }
 );
-document.addEventListener("click", (e) => {
-  if (e.target.matches(".cert")) {
-    const nameInput = document.getElementById("certNameInput");
-    const recipient = nameInput ? nameInput.value : "Ali Hassan — Earth System Detective";
-    e.target.textContent = "✓ Certificate Ready — Downloading Official PDF...";
-    e.target.style.background = "#bff7ff";
-    window.open(`/api/export/certificate?name=${encodeURIComponent(recipient)}`, "_blank");
-  }
-});
 render();
 
 /* ============================================================================
@@ -2126,89 +2258,3 @@ async function injectAdvancedInvestigateWidgets() {
 
 window.addEventListener("hashchange", () => setTimeout(injectAdvancedInvestigateWidgets, 120));
 setTimeout(injectAdvancedInvestigateWidgets, 150);
-
-// 8. 1-Click "▶ 60s Judge Auto-Tour" Mode
-let autoTourTimer = null;
-const tourBar = document.getElementById("autoTourBar");
-const tourTag = document.getElementById("autoTourStepTag");
-const tourCap = document.getElementById("autoTourCaption");
-
-const judgeTourSequence = [
-  {
-    hash: "home",
-    scroll: 380,
-    tag: "JUDGE AUTO-TOUR // STEP 1 OF 6 · ORBITAL ENTRY",
-    caption: "Descending from 705 km orbit into Pakistan's 7,253 glaciers across the Karakoram, Hindu Kush & Himalaya.",
-  },
-  {
-    hash: "investigate",
-    scroll: 180,
-    tag: "JUDGE AUTO-TOUR // STEP 2 OF 6 · DETECTIVE WORKBENCH",
-    caption: "Deseasonalizing 45 years of NASA & Meteomatics data with Theil–Sen slopes, Hamed–Rao Mann–Kendall & BH-FDR stippling.",
-  },
-  {
-    hash: "cases",
-    scroll: 120,
-    tag: "JUDGE AUTO-TOUR // STEP 3 OF 6 · KARAKORAM ANOMALY PROOF",
-    caption: "Side-by-side comparison proving Karakoram snow resilience (-0.12%/dec) vs. Hindu Kush retreat (-2.67%/dec, p < 0.0001).",
-  },
-  {
-    hash: "method",
-    scroll: 160,
-    tag: "JUDGE AUTO-TOUR // STEP 4 OF 6 · SIGNAL-VS-NOISE HONESTY SANDBOX",
-    caption: "Demonstrating why 10-year slices mislead and why 30–45 year records + autocorrelation correction are essential.",
-  },
-  {
-    hash: "ml",
-    scroll: 140,
-    tag: "JUDGE AUTO-TOUR // STEP 5 OF 6 · 37 PRE-TRAINED ML MODELS",
-    caption: "GPR structural changepoints, Random Forest driver attribution, 36-month forecasting (R²=0.99) & K-Means clustering.",
-  },
-  {
-    hash: "shield",
-    scroll: 220,
-    tag: "JUDGE AUTO-TOUR // STEP 6 OF 6 · HIMALAYASHIELD & INDUS WATER TOWER",
-    caption: "7-day Meteomatics GLOF radar across 15 glaciers + Tarbela Dam Peak Water simulator for 240 million people downstream.",
-  },
-];
-
-function stopJudgeAutoTour() {
-  if (autoTourTimer) {
-    clearInterval(autoTourTimer);
-    autoTourTimer = null;
-  }
-  if (tourBar) tourBar.style.display = "none";
-  const btn = document.getElementById("btnAutoTour");
-  if (btn) btn.textContent = "▶ 60s Judge Tour";
-}
-
-document.getElementById("btnStopTour")?.addEventListener("click", stopJudgeAutoTour);
-document.getElementById("btnAutoTour")?.addEventListener("click", () => {
-  if (autoTourTimer) {
-    stopJudgeAutoTour();
-    return;
-  }
-  let stepIdx = 0;
-  const btn = document.getElementById("btnAutoTour");
-  if (btn) btn.textContent = "⏸ Tour Running...";
-  if (tourBar) tourBar.style.display = "flex";
-
-  const runStep = () => {
-    if (stepIdx >= judgeTourSequence.length) {
-      stopJudgeAutoTour();
-      return;
-    }
-    const s = judgeTourSequence[stepIdx];
-    if (tourTag) tourTag.textContent = s.tag;
-    if (tourCap) tourCap.textContent = s.caption;
-    location.hash = s.hash;
-    setTimeout(() => {
-      window.scrollTo({ top: s.scroll, behavior: "smooth" });
-      if (s.hash === "investigate") injectAdvancedInvestigateWidgets();
-    }, 350);
-    stepIdx++;
-  };
-
-  runStep();
-  autoTourTimer = setInterval(runStep, 5500);
-});

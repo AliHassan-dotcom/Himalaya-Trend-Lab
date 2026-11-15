@@ -1,7 +1,7 @@
 # Himalaya Trend Lab - Be a Data Detective for Pakistan's Glaciers
 
 **2026 NASA Space Apps Challenge** | **Challenge:** *Be An Earth System Trend Detective*  
-**Prepared By:** Ali Hassan | **Version:** 1.0
+**Prepared By:** Team GeoNova | **Version:** 1.0
 
 ---
 

@@ -1,0 +1,8 @@
+date,glacier_id,glacier_name,range,snout_temp_c,precip_mm,snowmelt_mm,freezing_level_m,ela_m,glof_trigger_score,alert_level,source
+2026-11-15,passu,Passu Glacier (Gojal / Upper Hunza),Karakoram,-0.26,0.0,9.4,2570.0,4780,48.7,MODERATE WATCH,Meteomatics Calibrated Mountain Forecast
+2026-11-16,passu,Passu Glacier (Gojal / Upper Hunza),Karakoram,-0.92,1.2,7.0,2468.0,4780,46.7,MODERATE WATCH,Meteomatics Calibrated Mountain Forecast
+2026-11-17,passu,Passu Glacier (Gojal / Upper Hunza),Karakoram,-1.16,2.6,6.5,2432.0,4780,46.2,MODERATE WATCH,Meteomatics Calibrated Mountain Forecast
+2026-11-18,passu,Passu Glacier (Gojal / Upper Hunza),Karakoram,-1.7,0.0,3.3,2348.0,4780,43.5,NORMAL GREEN,Meteomatics Calibrated Mountain Forecast
+2026-11-19,passu,Passu Glacier (Gojal / Upper Hunza),Karakoram,-3.94,3.3,1.2,2004.0,4780,41.7,NORMAL GREEN,Meteomatics Calibrated Mountain Forecast
+2026-11-20,passu,Passu Glacier (Gojal / Upper Hunza),Karakoram,-3.46,7.4,2.6,2078.0,4780,42.9,NORMAL GREEN,Meteomatics Calibrated Mountain Forecast
+2026-11-21,passu,Passu Glacier (Gojal / Upper Hunza),Karakoram,-2.3,3.6,2.1,2256.0,4780,42.5,NORMAL GREEN,Meteomatics Calibrated Mountain Forecast

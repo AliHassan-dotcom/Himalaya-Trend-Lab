@@ -1,0 +1,8 @@
+date,glacier_id,glacier_name,range,snout_temp_c,precip_mm,snowmelt_mm,freezing_level_m,ela_m,glof_trigger_score,alert_level,source
+2026-11-15,chiantar,Chiantar Glacier (Broghil / Upper Yarkhun),Hindu Kush,-9.28,2.0,0.7,2252.0,4790,40.7,NORMAL GREEN,Meteomatics Calibrated Mountain Forecast
+2026-11-16,chiantar,Chiantar Glacier (Broghil / Upper Yarkhun),Hindu Kush,-8.7,0.6,0.2,2342.0,4790,40.3,NORMAL GREEN,Meteomatics Calibrated Mountain Forecast
+2026-11-17,chiantar,Chiantar Glacier (Broghil / Upper Yarkhun),Hindu Kush,-8.54,4.1,1.4,2366.0,4790,41.3,NORMAL GREEN,Meteomatics Calibrated Mountain Forecast
+2026-11-18,chiantar,Chiantar Glacier (Broghil / Upper Yarkhun),Hindu Kush,-9.15,6.0,2.1,2272.0,4790,41.9,NORMAL GREEN,Meteomatics Calibrated Mountain Forecast
+2026-11-19,chiantar,Chiantar Glacier (Broghil / Upper Yarkhun),Hindu Kush,-9.96,0.0,0.0,2148.0,4790,40.2,NORMAL GREEN,Meteomatics Calibrated Mountain Forecast
+2026-11-20,chiantar,Chiantar Glacier (Broghil / Upper Yarkhun),Hindu Kush,-10.85,9.9,3.5,2011.0,4790,43.1,NORMAL GREEN,Meteomatics Calibrated Mountain Forecast
+2026-11-21,chiantar,Chiantar Glacier (Broghil / Upper Yarkhun),Hindu Kush,-11.94,1.3,0.5,1843.0,4790,40.6,NORMAL GREEN,Meteomatics Calibrated Mountain Forecast

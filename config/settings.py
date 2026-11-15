@@ -28,7 +28,7 @@ APP_TITLE = "Himalaya Trend Lab"
 APP_SUBTITLE = "Be a Data Detective for Pakistan's Glaciers"
 APP_VERSION = "1.0.0"
 CHALLENGE_NAME = "Be An Earth System Trend Detective (NASA Space Apps 2026)"
-AUTHOR_NAME = "Ali Hassan"
+AUTHOR_NAME = "Team GeoNova"
 
 # API Endpoints & Credentials
 METEOMATICS_BASE_URL = "https://api.meteomatics.com"

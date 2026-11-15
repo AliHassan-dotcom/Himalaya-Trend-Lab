@@ -2,7 +2,7 @@
 
 - **Project:** Himalaya Trend Lab - Be a Data Detective for Pakistan's Glaciers
 - **Challenge:** Be An Earth System Trend Detective
-- **Prepared By:** Ali Hassan
+- **Prepared By:** Team GeoNova
 - **Compliance Note:** Strictly follows the official NASA Space Apps rules (**Maximum 7 Slides** OR **Maximum 30-Second Video**, English-only, zero NASA logos/emblems).
 
 ---
@@ -11,7 +11,7 @@
 
 ### Slide 1 - Title & Mission: The Third Pole Detective
 - **Headline:** HIMALAYA TREND LAB - Be a Data Detective for Pakistan's Glaciers
-- **Subtitle:** 2026 NASA Space Apps Challenge | Challenge: *Be An Earth System Trend Detective* | Prepared by **Ali Hassan**
+- **Subtitle:** 2026 NASA Space Apps Challenge | Challenge: *Be An Earth System Trend Detective* | Prepared by **Team GeoNova**
 - **Key Visual:** Screenshot of the `#home` 3D/2D Karakoram mountain scrollytelling hero with the orbital satellite scan beam, telemetry HUD (`705 KM`), and rising 3D Pakistan terrain map.
 - **Core Hook:**
   - Pakistan holds **7,253 glaciers** - more ice than anywhere outside the poles.

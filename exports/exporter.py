@@ -63,7 +63,7 @@ def generate_one_page_pdf_report(
     c.drawString(
         36,
         h - 70,
-        f"Variable: {var_info['name']} ({var_info['units']})  |  Window: {analysis['start_year']}–{analysis['end_year']} ({analysis['n_years']} yrs)  |  Prepared by Ali Hassan",
+        f"Variable: {var_info['name']} ({var_info['units']})  |  Window: {analysis['start_year']}–{analysis['end_year']} ({analysis['n_years']} yrs)  |  Prepared by Team GeoNova",
     )
 
     y = h - 112
@@ -230,7 +230,7 @@ def generate_detective_certificate_pdf(recipient_name: str = "Earth System Data 
     c.setFillColor(colors.HexColor("#8FA8B3"))
     c.setFont("Helvetica", 10)
     c.drawString(65, 65, f"Issued: {datetime.utcnow().strftime('%B %d, %Y')}")
-    c.drawRightString(w - 65, 65, "Challenge: Be An Earth System Trend Detective  |  Prepared by Ali Hassan")
+    c.drawRightString(w - 65, 65, "Challenge: Be An Earth System Trend Detective  |  Prepared by Team GeoNova")
 
     c.showPage()
     c.save()

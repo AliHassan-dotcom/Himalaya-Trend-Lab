@@ -2,7 +2,7 @@
 
 - **Project Title:** Himalaya Trend Lab - Be a Data Detective for Pakistan's Glaciers
 - **Challenge:** Be An Earth System Trend Detective
-- **Prepared By:** Ali Hassan
+- **Prepared By:** Team GeoNova
 - **Version:** 1.0 (2026 NASA Space Apps Challenge Edition)
 
 ---
@@ -78,5 +78,5 @@ Every investigation in **Himalaya Trend Lab** automatically generates a defensib
 *(Required by the 2026 NASA Space Apps Challenge Submission Guide)*
 
 - **AI/ML Inside the Application:** All statistical tests (Theil–Sen, Hamed–Rao Modified Mann–Kendall, Benjamini–Hochberg FDR) and Machine Learning models (Gaussian Process Regression, Random Forest, HistGradientBoosting, Ridge Forecaster, K-Means/PCA, and Isolation Forest) are implemented transparently in Python using `scipy`, `statsmodels`, and `scikit-learn` (`ml/`). They are trained directly on NASA and Meteomatics time-series data and verified against mathematical ground truth via `pytest`.
-- **AI Assistance During Development:** Generative AI coding and design tools (Antigravity AI assistant and Hatchable UI prototyping) were used under the direction of **Ali Hassan** to accelerate software engineering, frontend scrollytelling layout, and documentation formatting. All scientific formulas, regional glacier catalogues, and statistical thresholds were human-verified.
+- **AI Assistance During Development:** Generative AI coding and design tools (Antigravity AI assistant and Hatchable UI prototyping) were used under the direction of **Team GeoNova** to accelerate software engineering, frontend scrollytelling layout, and documentation formatting. All scientific formulas, regional glacier catalogues, and statistical thresholds were human-verified.
 - **Trademark & Branding Compliance:** In strict accordance with NASA Space Apps rules, **no NASA logos, insignias, or restricted emblems** are used anywhere in the application UI, exported PDFs, or presentation materials.
