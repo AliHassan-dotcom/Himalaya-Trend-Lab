@@ -12,7 +12,32 @@ Pakistan is home to **7,253 glaciers** across the Karakoram, Hindu Kush, and Wes
 
 ---
 
-## 2. Six-Layer System Architecture
+## 2. Platform Screenshots
+
+### Interactive 3D Mountain Hero & Orbital Altimetry
+![Himalaya Trend Lab Hero](docs/screenshots/01-home-hero.jpg)
+
+### Cryosphere Scrollytelling & RGI v6.0 Glacier Inventory
+![Glacier Overview](docs/screenshots/02-glacier-overview.jpg)
+
+### Investigate Workbench — Statistical Trend & Climatology Engine
+![Investigate Workbench](docs/screenshots/03-investigate-workbench.jpg)
+
+### Demo Cases — Karakoram Anomaly & Regional Comparisons
+![Demo Cases](docs/screenshots/04-demo-cases.jpg)
+
+### Detective Notebook — Interactive Earth System Missions
+![Detective Notebook](docs/screenshots/05-detective-notebook.jpg)
+
+### AI / ML Lab — GPR Changepoints, Driver Attribution & 36-Month Forecasting
+![AI / ML Lab](docs/screenshots/06-aiml-lab.jpg)
+
+### HimalayaShield — 7-Day GLOF Early Warning Radar & Indus Water Security
+![HimalayaShield Radar](docs/screenshots/07-himalayashield-radar.jpg)
+
+---
+
+## 3. Six-Layer System Architecture
 
 ```text
 Himalaya Trend Lab/
@@ -52,7 +77,7 @@ Himalaya Trend Lab/
 
 ---
 
-## 3. Core Mathematical & Glaciological Equations
+## 4. Core Mathematical & Glaciological Equations
 
 1. **12-Month Climatology & Deseasonalized Anomaly Extraction:**
    $$\bar{x}_m = \frac{1}{N_m} \sum_{y} x_{y,m}, \qquad A_{y,m} = x_{y,m} - \bar{x}_m$$
@@ -67,7 +92,7 @@ Himalaya Trend Lab/
 
 ---
 
-## 4. Quick Start & Running Locally
+## 5. Quick Start & Running Locally
 
 ### 1. Start the Server
 ```powershell
@@ -91,7 +116,7 @@ python -m ml.train_models
 
 ---
 
-## 5. Submission Pack Documents
-- **Official Submission Form Answers:** [`docs/SUBMISSION_ANSWERS.md`](file:///d:/Himalaya%20Trend%20lab/docs/SUBMISSION_ANSWERS.md)
-- **7-Slide Judge Deck & 30-Second Video Script:** [`docs/DEMO_SLIDES_AND_SCRIPT.md`](file:///d:/Himalaya%20Trend%20lab/docs/DEMO_SLIDES_AND_SCRIPT.md)
-- **Pre-Trained ML Evaluation Metrics:** [`ml/trained_models/training_metrics.json`](file:///d:/Himalaya%20Trend%20lab/ml/trained_models/training_metrics.json)
+## 6. Submission Pack Documents
+- **Official Submission Form Answers:** [docs/SUBMISSION_ANSWERS.md](docs/SUBMISSION_ANSWERS.md)
+- **7-Slide Judge Deck & 30-Second Video Script:** [docs/DEMO_SLIDES_AND_SCRIPT.md](docs/DEMO_SLIDES_AND_SCRIPT.md)
+- **Pre-Trained ML Evaluation Metrics:** [ml/trained_models/training_metrics.json](ml/trained_models/training_metrics.json)
