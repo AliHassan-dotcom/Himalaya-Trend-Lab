@@ -12,8 +12,8 @@
   --gold:#f2c56b;
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:#02070c;color:var(--ink);font-family:Manrope,system-ui,sans-serif;overflow-x:hidden}
+html{scroll-behavior:smooth;overflow-x:hidden;max-width:100%}
+body{margin:0;background:#02070c;color:var(--ink);font-family:Manrope,system-ui,sans-serif;overflow-x:hidden;max-width:100%}
 
 /* ============================================================================
    CINEMATIC BACKGROUND FX LAYER (Always behind interactive content: z-index 0)
@@ -59,15 +59,21 @@ body{margin:0;background:#02070c;color:var(--ink);font-family:Manrope,system-ui,
 .hero,.stage,.section,.dashboard,.pageHero,.pageBody,footer{position:relative;z-index:6}
 .noise{position:fixed;inset:0;pointer-events:none;z-index:50;opacity:.04;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E")}
 
-.topbar{position:fixed;top:16px;left:2.5%;right:2.5%;height:70px;z-index:60;display:flex;align-items:center;padding:10px 16px 10px 20px;border:1px solid var(--line);border-radius:20px;background:#06111a;box-shadow:0 18px 70px #000a}
-.brand{display:flex;gap:10px;align-items:center;color:white;text-decoration:none;line-height:.92;font-size:10px;letter-spacing:.13em}
+.topbar{position:fixed;top:16px;left:2.5%;right:2.5%;height:70px;z-index:60;display:flex;align-items:center;gap:12px;padding:10px 16px 10px 20px;border:1px solid var(--line);border-radius:20px;background:#06111a;box-shadow:0 18px 70px #000a}
+.brand{display:flex;gap:10px;align-items:center;color:white;text-decoration:none;line-height:.92;font-size:10px;letter-spacing:.13em;flex-shrink:0}
 .brand b{font-size:13px;letter-spacing:.08em}
 .brandLogo{height:44px;width:auto;display:block;border-radius:8px;background:#ffffff;padding:3px 10px;object-fit:contain;border:1px solid rgba(135,236,255,.35)}
 .brandmark{width:35px;height:35px;border:1px solid #8eefff66;border-radius:50%;display:grid;place-items:center;color:var(--cyan);font-size:15px;background:rgba(109,231,255,.08)}
 .navlinks{display:flex;gap:6px;margin:auto}
-.navlinks a{color:#c5dfe7;text-decoration:none;padding:10px 13px;border-radius:10px;font-size:12.5px;font-weight:600;transition:.25s}
+.navlinks a{color:#c5dfe7;text-decoration:none;padding:10px 13px;border-radius:10px;font-size:12.5px;font-weight:600;transition:.25s;white-space:nowrap}
 .navlinks a:hover,.navlinks a.activeNav{color:#fff;background:rgba(109,231,255,.16);border:1px solid rgba(109,231,255,.3)}
-.navcta{border:1px solid #a8f3ff;background:linear-gradient(135deg,#ecfcff,#7cebff);color:#031018;border-radius:12px;padding:11px 16px;font-weight:800;font-size:12.5px;cursor:pointer;box-shadow:0 0 24px rgba(109,231,255,.28)}
+.navRightActions{display:flex;gap:8px;align-items:center;margin-left:auto;flex-shrink:0}
+.mobileMenuBtn{display:none;font-size:16px;line-height:1;padding:9px 12px}
+.mobileNavDrawer{display:none;position:fixed;top:86px;left:3%;right:3%;z-index:65;padding:10px;border:1px solid var(--line);border-radius:14px;background:#06111a;box-shadow:0 20px 50px rgba(0,0,0,.8);flex-direction:column;gap:4px}
+.mobileNavDrawer.open{display:flex}
+.mobileNavDrawer a{color:#d3ebf2;text-decoration:none;padding:11px 14px;border-radius:10px;font:600 13.5px Manrope,sans-serif;border:1px solid transparent}
+.mobileNavDrawer a:hover,.mobileNavDrawer a.activeNav{color:#fff;background:#0f1d29;border-color:rgba(109,231,255,.3)}
+.navcta{border:1px solid #a8f3ff;background:linear-gradient(135deg,#ecfcff,#7cebff);color:#031018;border-radius:12px;padding:11px 16px;font-weight:800;font-size:12.5px;cursor:pointer;box-shadow:0 0 24px rgba(109,231,255,.28);white-space:nowrap}
 .navcta span{margin-left:8px}
 
 /* ============================================================================
@@ -324,20 +330,7 @@ footer{padding:28px 5.5vw;border-top:1px solid var(--line);background:rgba(2,8,1
 @keyframes cloud{to{transform:translateX(145vw)}}
 @keyframes orbit{to{transform:rotate(360deg)}}
 
-@media(max-width:900px){
-  .navlinks{display:none}
-  .navcta{margin-left:auto}
-  .heroCopy{left:6vw;top:16vh}
-  .hud,.scene-readout,.terrainMap,.elevationRail{display:none}
-  .dataStrip,.metrics,.dataRibbon{grid-template-columns:repeat(2,1fr)}
-  .labGrid,.featureGrid,.chartGrid,.controls,.pipeline{grid-template-columns:1fr}
-  .pipeNode:not(:last-child):after{display:none}
-  .shieldRow{grid-template-columns:1fr 1fr}
-  .sectionHead{display:block}
-  .hero h1{font-size:56px}
-  .mountains{height:38%}
-  footer{display:block;line-height:2.2}
-}
+/* Desktop rules first — responsive media queries live at the bottom so cascade overrides cleanly */
 
 /* ============================================================================
    8 GLOBAL WINNER UPGRADES: TOPO MAP, SPLIT-SLIDER, CROSSHAIR, AI COPILOT, TOUR
@@ -390,3 +383,84 @@ footer{padding:28px 5.5vw;border-top:1px solid var(--line);background:rgba(2,8,1
 /* 60s Judge Auto-Tour Floating Caption Bar */
 .autoTourBar{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:90;width:min(680px,92vw);padding:14px 20px;border:1px solid #f2c56b99;border-radius:18px;background:rgba(12,22,29,.95);backdrop-filter:blur(20px);box-shadow:0 20px 60px rgba(0,0,0,.85),0 0 30px rgba(242,197,107,.22);display:flex;align-items:center;justify-content:space-between;gap:16px}
 .autoTourBar strong{color:#fff;font-size:14px;display:block;margin-top:3px}
+.mlControlPair{min-width:min(420px,100%)}
+
+/* ============================================================================
+   MOBILE & TABLET RESPONSIVE BREAKPOINTS (Must remain at end of stylesheet)
+   ============================================================================ */
+@media(max-width:900px){
+  .topbar{top:8px;left:10px;right:10px;height:54px;gap:6px;padding:6px 10px;border-radius:14px}
+  .brandLogo{height:28px;padding:2px 6px}
+  .navlinks{display:none}
+  .navRightActions{gap:5px}
+  .mobileMenuBtn{display:inline-flex;align-items:center;justify-content:center;padding:7px 10px;font-size:14px}
+  .navcta{padding:7px 10px;font-size:11px;margin-left:0}
+  .navcta span{margin-left:3px}
+  .navUtilBtn{padding:7px 9px;font-size:11px}
+  .mobileNavDrawer{top:68px;left:10px;right:10px}
+
+  .hero{display:flex;flex-direction:column;justify-content:flex-start;min-height:100svh;padding:80px 16px 84px}
+  .heroCopy{position:relative;left:auto;top:auto;width:100%;max-width:100%;min-width:0;order:1}
+  .hero h1,.hero h1.heroTitleLockup{font-size:clamp(28px,8.8vw,48px);margin:10px 0 14px;transform:skewX(-4deg)}
+  .heroDesc{font-size:14px;line-height:1.58;max-width:100%}
+  .actions{margin-top:16px;gap:8px}
+  .actions .btn{padding:10px 13px;font-size:11.5px}
+  .sceneBadge{position:relative;left:auto;bottom:auto;order:2;margin-top:18px;display:inline-block;width:fit-content;max-width:100%;font-size:10px;line-height:1.4;white-space:normal}
+  .scrollcue{position:relative;left:auto;bottom:auto;order:3;margin-top:14px}
+  .scrollcue span{height:22px}
+
+  .hud,.scene-readout,.terrainMap,.elevationRail,.fxTelemetry,.pageHero:after{display:none}
+  .stage{min-height:auto;padding:64px 5vw}
+  .stageTitle{font-size:clamp(28px,8.5vw,46px)}
+  .section,.dashboard{padding:52px 5vw}
+  .sectionHead{display:block;margin-bottom:24px}
+  .section h2{font-size:clamp(30px,9vw,46px)}
+  .pageHero{padding:88px 5vw 26px}
+  .pageHero h1{font-size:clamp(30px,9vw,48px);line-height:.95}
+  .pageHero p{font-size:14px;line-height:1.6}
+  .pageBody{padding:18px 5vw 96px}
+  .dashTop{padding:14px 16px}
+  .dashTitle{font-size:17px;line-height:1.3}
+  .dashBody{padding:14px 16px}
+  .verdict{padding:14px 16px}
+  .verdict strong{font-size:16.5px}
+
+  .dataStrip,.metrics,.dataRibbon{grid-template-columns:repeat(2,1fr)!important}
+  .dataRibbon>div{padding:12px 14px;border-bottom:1px solid rgba(255,255,255,.08)}
+  .dataCell{border-right:none;border-bottom:1px solid var(--line)}
+  .labGrid,.featureGrid,.chartGrid,.controls,.pipeline,.mlControlPair{grid-template-columns:1fr!important;min-width:0!important;width:100%}
+  .pipeNode:not(:last-child):after{display:none}
+  .chart{height:225px}
+  .topoMapWrap{min-height:230px;padding:10px}
+  .topoSvg{height:210px}
+  .ring{width:320px;height:125px}
+  .ring.r2{width:400px;height:155px}
+  .orbitEarth{width:180px;height:180px}
+  .orbitCard{min-height:250px}
+
+  .aiCopilotBtn{top:auto;bottom:14px;right:12px;max-width:calc(100vw - 24px);padding:9px 13px;font-size:11px}
+  .aiCopilotDrawer{top:auto;bottom:62px;right:10px;left:10px;width:auto;max-height:70vh;border-radius:16px}
+  .autoTourBar{bottom:14px;padding:12px 14px;flex-direction:column;align-items:flex-start}
+  footer{flex-direction:column;gap:8px;padding:22px 5vw 82px;line-height:1.6}
+}
+
+@media(max-width:640px){
+  .audioLabel{display:none}
+  .shieldRow.headerRow{display:none}
+  .shieldRow{grid-template-columns:1fr!important;gap:5px;padding:12px 14px}
+  .mlBar{grid-template-columns:100px 1fr 62px!important;gap:8px;font-size:10px}
+  .splitCompareWrap{height:auto;min-height:420px}
+  .splitLayer{padding:16px}
+  .splitLayer h3{font-size:18px!important}
+  .splitLayer p{font-size:12.5px!important}
+  .splitHandleBadge{width:34px;height:34px;font-size:11px}
+}
+
+@media(max-width:480px){
+  .actions .btn{flex:1 1 100%;justify-content:center}
+  .dataStrip,.metrics,.dataRibbon{grid-template-columns:1fr!important}
+  .dataRibbon>div{border-right:none}
+  .tabs .tab{flex:1 1 calc(50% - 7px);text-align:center;padding:8px 10px;font-size:11.5px}
+  .aiAskForm{flex-direction:column}
+  .aiAskForm .btn{width:100%;justify-content:center}
+}

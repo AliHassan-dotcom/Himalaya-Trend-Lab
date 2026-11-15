@@ -535,7 +535,7 @@ function ml() {
             <div class="mono" id="mlTopTag">PRE-TRAINED MODEL INFERENCE // 80/20 TIME-SERIES SPLIT + 5-FOLD CV</div>
             <div class="dashTitle" id="mlTopTitle">Karakoram Range — Machine Learning Cryosphere Suite</div>
           </div>
-          <div class="controls" style="grid-template-columns:1fr 1fr;min-width:420px">
+          <div class="controls mlControlPair" style="grid-template-columns:1fr 1fr">
             <div class="control" style="padding:10px 14px">
               <label>Select Basin</label>
               <select id="mlPlaceSelect">
@@ -2258,3 +2258,39 @@ async function injectAdvancedInvestigateWidgets() {
 
 window.addEventListener("hashchange", () => setTimeout(injectAdvancedInvestigateWidgets, 120));
 setTimeout(injectAdvancedInvestigateWidgets, 150);
+
+// Mobile navigation drawer toggle
+(() => {
+  const menuBtn = document.getElementById("btnMobileMenu");
+  const drawer = document.getElementById("mobileNavDrawer");
+  if (!menuBtn || !drawer) return;
+
+  const setOpen = (open) => {
+    drawer.classList.toggle("open", open);
+    menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
+    menuBtn.textContent = open ? "✕" : "☰";
+  };
+
+  menuBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    setOpen(!drawer.classList.contains("open"));
+  });
+
+  drawer.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => setOpen(false));
+  });
+
+  document.addEventListener("click", (e) => {
+    if (drawer.classList.contains("open") && !drawer.contains(e.target) && e.target !== menuBtn) {
+      setOpen(false);
+    }
+  });
+
+  window.addEventListener("hashchange", () => {
+    setOpen(false);
+    const currentHash = location.hash || "#home";
+    drawer.querySelectorAll("a").forEach((a) => {
+      a.classList.toggle("activeNav", a.getAttribute("href") === currentHash);
+    });
+  });
+})();

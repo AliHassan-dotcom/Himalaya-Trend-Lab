@@ -14,11 +14,21 @@
     <a href="#ml">AI/ML Lab</a>
     <a href="#shield">Shield</a>
   </div>
-  <div class="navRightActions" style="display:flex;gap:8px;align-items:center">
-    <button class="navUtilBtn" id="btnAudioToggle" type="button" title="Toggle Ambient Mountain Wind & Orbital Telemetry Audio">🔇 Audio Off</button>
+  <div class="navRightActions">
+    <button class="navUtilBtn" id="btnAudioToggle" type="button" title="Toggle Ambient Mountain Wind & Orbital Telemetry Audio">🔇 <span class="audioLabel">Audio Off</span></button>
     <button class="navcta" onclick="location.hash='investigate'">Enter Lab <span>↗</span></button>
+    <button class="navUtilBtn mobileMenuBtn" id="btnMobileMenu" type="button" aria-label="Toggle navigation menu" aria-expanded="false">☰</button>
   </div>
 </nav>
+<div id="mobileNavDrawer" class="mobileNavDrawer" aria-label="Mobile Navigation">
+  <a href="#home">Home</a>
+  <a href="#investigate">Investigate</a>
+  <a href="#cases">Demo Cases</a>
+  <a href="#notebook">Notebook</a>
+  <a href="#method">Methodology</a>
+  <a href="#ml">AI/ML Lab</a>
+  <a href="#shield">Shield</a>
+</div>
 <main id="view"></main>
 <div id="svgTooltip" class="svgTooltip" style="display:none"></div>
 <button id="aiCopilotBtn" class="aiCopilotBtn" type="button">✦ Ask Glacier Detective AI</button>
