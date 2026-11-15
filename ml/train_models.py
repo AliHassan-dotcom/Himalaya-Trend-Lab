@@ -17,7 +17,6 @@ from ml.forecaster import train_and_forecast_series
 from ml.clustering_hazard import run_spatial_regime_clustering, detect_compound_glof_hazards
 
 MODEL_DIR = Path(__file__).resolve().parent / "trained_models"
-MODEL_DIR.mkdir(parents=True, exist_ok=True)
 METRICS_PATH = MODEL_DIR / "training_metrics.json"
 
 
@@ -30,6 +29,7 @@ def train_and_save_all_models() -> Dict[str, Any]:
     4. Gaussian Process Regression (GPR) Non-Linear Trend Models & Changepoints.
     5. Isolation Forest Compound Extreme GLOF Hazard Models.
     """
+    MODEL_DIR.mkdir(parents=True, exist_ok=True)
     summary_report: Dict[str, Any] = {
         "clustering": {},
         "driver_models": {},

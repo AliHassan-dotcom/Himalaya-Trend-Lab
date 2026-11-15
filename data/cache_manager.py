@@ -5,30 +5,34 @@ offline-resilient demos for NASA Space Apps judges.
 """
 import hashlib
 import json
+import logging
 import time
 from pathlib import Path
 from typing import Optional, Dict, Any
 import pandas as pd
 
-from config.settings import CACHE_DIR, ENABLE_CACHE, CACHE_EXPIRY_DAYS
+from config.settings import BUNDLED_CACHE_DIR, CACHE_DIR, ENABLE_CACHE, CACHE_EXPIRY_DAYS
 
 STATS_FILE = CACHE_DIR / "cache_stats.json"
+BUNDLED_STATS_FILE = BUNDLED_CACHE_DIR / "cache_stats.json"
 
 
 def _load_stats() -> Dict[str, int]:
-    if STATS_FILE.exists():
-        try:
-            return json.loads(STATS_FILE.read_text(encoding="utf-8"))
-        except Exception:
-            pass
+    for stats_path in (STATS_FILE, BUNDLED_STATS_FILE):
+        if stats_path.exists():
+            try:
+                return json.loads(stats_path.read_text(encoding="utf-8"))
+            except Exception:
+                pass
     return {"cache_hits": 0, "api_calls_meteomatics": 0, "api_calls_nasa": 0}
 
 
 def _save_stats(stats: Dict[str, int]) -> None:
     try:
+        CACHE_DIR.mkdir(parents=True, exist_ok=True)
         STATS_FILE.write_text(json.dumps(stats, indent=2), encoding="utf-8")
-    except Exception:
-        pass
+    except Exception as exc:
+        logging.warning("Skipping cache stats write: %s", exc)
 
 
 def record_cache_hit() -> None:
@@ -76,21 +80,30 @@ def get_cached_dataframe(cache_key: str) -> Optional[pd.DataFrame]:
     """Load a cached pandas DataFrame if caching is enabled and file is fresh."""
     if not ENABLE_CACHE:
         return None
-    filepath = CACHE_DIR / f"{cache_key}.csv"
-    if _is_expired(filepath):
-        return None
-    try:
-        df = pd.read_csv(filepath, parse_dates=["date"])
-        record_cache_hit()
-        return df
-    except Exception:
-        return None
+    for base_dir in (CACHE_DIR, BUNDLED_CACHE_DIR):
+        filepath = base_dir / f"{cache_key}.csv"
+        # Bundled read-only baseline series shipped with repo remain valid across deploys
+        if base_dir == CACHE_DIR and _is_expired(filepath):
+            continue
+        if not filepath.exists():
+            continue
+        try:
+            df = pd.read_csv(filepath, parse_dates=["date"])
+            record_cache_hit()
+            return df
+        except Exception:
+            continue
+    return None
 
 
 def save_cached_dataframe(cache_key: str, df: pd.DataFrame) -> Path:
-    """Save a pandas DataFrame to the local cache directory."""
+    """Save a pandas DataFrame to the writable cache directory (/tmp on Vercel)."""
     filepath = CACHE_DIR / f"{cache_key}.csv"
-    df.to_csv(filepath, index=False)
+    try:
+        CACHE_DIR.mkdir(parents=True, exist_ok=True)
+        df.to_csv(filepath, index=False)
+    except Exception as exc:
+        logging.warning("Skipping dataframe cache write for %s: %s", cache_key, exc)
     return filepath
 
 
@@ -98,19 +111,27 @@ def get_cached_json(cache_key: str) -> Optional[Dict[str, Any]]:
     """Load a cached JSON dictionary if available and fresh."""
     if not ENABLE_CACHE:
         return None
-    filepath = CACHE_DIR / f"{cache_key}.json"
-    if _is_expired(filepath):
-        return None
-    try:
-        data = json.loads(filepath.read_text(encoding="utf-8"))
-        record_cache_hit()
-        return data
-    except Exception:
-        return None
+    for base_dir in (CACHE_DIR, BUNDLED_CACHE_DIR):
+        filepath = base_dir / f"{cache_key}.json"
+        if base_dir == CACHE_DIR and _is_expired(filepath):
+            continue
+        if not filepath.exists():
+            continue
+        try:
+            data = json.loads(filepath.read_text(encoding="utf-8"))
+            record_cache_hit()
+            return data
+        except Exception:
+            continue
+    return None
 
 
 def save_cached_json(cache_key: str, payload: Dict[str, Any]) -> Path:
-    """Save a JSON-serializable dictionary to the local cache directory."""
+    """Save a JSON-serializable dictionary to the writable cache directory (/tmp on Vercel)."""
     filepath = CACHE_DIR / f"{cache_key}.json"
-    filepath.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+    try:
+        CACHE_DIR.mkdir(parents=True, exist_ok=True)
+        filepath.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+    except Exception as exc:
+        logging.warning("Skipping JSON cache write for %s: %s", cache_key, exc)
     return filepath

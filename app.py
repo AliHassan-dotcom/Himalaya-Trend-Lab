@@ -10,13 +10,15 @@ Serves the Hatchable Frontend (`public/index.html`, `public/app.css`, `public/ap
 - Layer 5B (`exports/`): CSV Export, 1-Page PDF Detective Report, Official Detective Certificate PDF
 """
 from datetime import datetime, timezone
+import logging
 import os
 from pathlib import Path
 from typing import Dict, Any
 import joblib
 import uvicorn
-from fastapi import FastAPI
-from fastapi.responses import FileResponse, Response
+from fastapi import FastAPI, Request
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse, JSONResponse, Response
 from fastapi.staticfiles import StaticFiles
 
 from config import (
@@ -66,7 +68,11 @@ from exports import (
     generate_one_page_pdf_report,
 )
 
-PUBLIC_DIR = BASE_DIR / "public"
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger("himalaya_trend_lab")
+
+APP_DIR = Path(__file__).resolve().parent
+PUBLIC_DIR = APP_DIR / "public" if (APP_DIR / "public").is_dir() else (APP_DIR / "ui" / "public")
 _ML_MEM_CACHE: Dict[str, Dict[str, Any]] = {}
 
 app = FastAPI(
@@ -75,8 +81,32 @@ app = FastAPI(
     version="1.0.0",
 )
 
+_frontend_url = (os.environ.get("FRONTEND_URL") or "").strip().rstrip("/")
+if _frontend_url:
+    _allowed_origins = [_frontend_url]
+elif not os.environ.get("VERCEL"):
+    _allowed_origins = ["http://localhost:8000", "http://127.0.0.1:8000", "http://localhost:3000"]
+else:
+    _allowed_origins = []
+
+if _allowed_origins:
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=_allowed_origins,
+        allow_credentials=True,
+        allow_methods=["GET", "POST", "HEAD", "OPTIONS"],
+        allow_headers=["*"],
+    )
+
+
+@app.exception_handler(Exception)
+async def global_exception_handler(request: Request, exc: Exception):
+    """Log full traceback to Vercel / server logs for any unhandled exception."""
+    logger.exception("Unhandled exception during %s %s", request.method, request.url.path)
+    return JSONResponse(status_code=500, content={"detail": "Internal Server Error"})
+
 # Mount /assets directory for karakoram-k2.jpg and static images
-if (PUBLIC_DIR / "assets").exists():
+if (PUBLIC_DIR / "assets").is_dir():
     app.mount("/assets", StaticFiles(directory=str(PUBLIC_DIR / "assets")), name="assets")
 
 # Maps UI friendly labels from Hatchable selects to internal catalogue IDs
@@ -135,19 +165,35 @@ def _resolve_variable_id(variable: str) -> str:
 # STATIC & HATCHABLE SHIM ROUTES (Preserves 100% of Hatchable Frontend Baseline)
 # ============================================================================
 
+def _serve_public_file(filename: str, media_type: str):
+    target = PUBLIC_DIR / filename
+    if not target.is_file():
+        return JSONResponse(status_code=404, content={"detail": f"{filename} not found"})
+    return FileResponse(target, media_type=media_type, headers={"Cache-Control": "no-store"})
+
+
 @app.get("/", include_in_schema=False)
 def serve_index():
-    return FileResponse(PUBLIC_DIR / "index.html", media_type="text/html", headers={"Cache-Control": "no-store"})
+    return _serve_public_file("index.html", "text/html")
 
 
 @app.get("/app.css", include_in_schema=False)
 def serve_css():
-    return FileResponse(PUBLIC_DIR / "app.css", media_type="text/css", headers={"Cache-Control": "no-store"})
+    return _serve_public_file("app.css", "text/css")
 
 
 @app.get("/app.js", include_in_schema=False)
 def serve_js():
-    return FileResponse(PUBLIC_DIR / "app.js", media_type="application/javascript", headers={"Cache-Control": "no-store"})
+    return _serve_public_file("app.js", "application/javascript")
+
+
+@app.get("/favicon.ico", include_in_schema=False)
+def serve_favicon():
+    for candidate in (PUBLIC_DIR / "favicon.ico", PUBLIC_DIR / "assets" / "logo.jpg"):
+        if candidate.is_file():
+            media = "image/x-icon" if candidate.suffix == ".ico" else "image/jpeg"
+            return FileResponse(candidate, media_type=media)
+    return Response(status_code=204)
 
 
 @app.get("/__hatchable/config.js", include_in_schema=False)
